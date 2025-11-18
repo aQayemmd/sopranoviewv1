@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soprano Shop | سوپرانو شاپ</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./emtehan.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-right">
+                    <a href="index.html" class="logo">Soprano Shop</a>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">خانه</a></li>
+                        <li><a href="#">ویژه‌ها</a></li>
+                        <li><a href="index.html#products">محصولات</a></li>
+                        <li><a href="#">پرطرفدارها</a></li>
+                        <li><a href="#contact">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="header-actions">
+                  
+                    <!-- آیکون منوی موبایل (تغییر جدید) -->
+                    <a href="#" class="header-icon mobile-menu-toggle" aria-label="منو"><i class="fa-solid fa-bars"></i></a>
+                    <a href="#" class="header-icon" aria-label="سبد خرید"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="user-menu-container">
+
+                        <a href="#" class="header-icon" aria-label="حساب کاربری"><i class="far fa-user"></i></a>
+
+                        <ul class="user-dropdown-menu">
+
+                            <li><a href="login.html">ورود</a></li>
+
+                            <li><a href="register.html">ثبت نام</a></li>
+                        </ul>
+
+                    </div>
+                      <div class="search-box">
+                        <input type="text" placeholder="جستجو...">
+                        <button><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- منوی موبایل (تغییر جدید) -->
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="index.html">خانه</a></li>
+                <li><a href="#">ویژه‌ها</a></li>
+                <li><a href="index.html#products">محصولات</a></li>
+                <li><a href="#">پرطرفدارها</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+                <li><a href="login.html">ورود</a></li>
+                <li><a href="register.html">ثبت نام</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="main-slider">
+        <div class="swiper-container" id="main-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                         <div class="slide-image-wrapper" style="background-image: url('./slid1.jpg');">
+                            <div class="slide-text">
+                                <h2>حس خوب خرید</h2>
+                                <p>بهترین هارو انتخاب کنید<br>خرید بهترینای هفته...</p>
+                            </div>
+                            <a href="#" class="btn">مشاهده بهترین ها</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="slide-image-wrapper" style="background-image: url('./slid2.jpg');">
+                            <div class="slide-text">
+                                <h2>خاص باشید</h2>
+                                <p>انتخاب کنید و خرید<br>محصولات روز دنیا با ما</p>
+                            </div>
+                            <a href="#" class="btn">خرید به سادگی</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="slide-image-wrapper" style="background-image: url('./slid3.jpg');">
+                            <div class="slide-text">
+                                <h2>محصولات مراقبت از پوست</h2>
+                                <p>با مواد طبیعی، جوانی پوست خود را حفظ کنید.</p>
+                            </div>
+                            <a href="#" class="btn">مشاهده محصولات</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-slide-content">
+                        <div class="slide-image-wrapper" style="background-image: url('./slid4.jpg');">
+                            <div class="slide-text">
+                                <h2>آرایش حرفه‌ای</h2>
+                                <p>با محصولات ما به یک آرتیست تبدیل شوید.</p>
+                            </div>
+                            <a href="#" class="btn">خرید آنلاین</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <main id="products" class="products-page section-padding">
+        <div class="container">
+            <h1 class="section-title">محصولات ما</h1>
+            <!-- فیلتر مرتب‌سازی (تغییر جدید) -->
+            <div class="filter-container">
+                <label for="sortFilter">مرتب‌سازی:</label>
+                <select id="sortFilter">
+                    <option value="default" >پیش‌فرض</option>
+                    <option value="expensive">گران‌ترین</option>
+                    <option value="cheap">ارزان‌ترین</option>
+                    <option value="popular">پرفروش‌ترین</option>
+                    <option value="newest">جدیدترین</option>
+                </select>
+            </div>
+            <div class="product-grid"></div>
+            <nav class="pagination-container" aria-label="Page navigation">
+                <ul class="pagination"></ul>
+            </nav>
+        </div>
+    </main>
+
+<section>
+
+ <div class="accordion">
+<div class="acc-item">
+<button class="acc-header" aria-expanded="false">
+<span class="acc-title">درباره ما</span>
+<span class="acc-icon" aria-hidden="true">+</span>
+</button>
+<div class="acc-panel">
+لورم ایپسوم متن ساختگی برای معرفی برند لوازم آرایشی با کیفیت بالا.
+</div>
+</div>
+
+<div class="acc-item">
+<button class="acc-header" aria-expanded="false">
+<span class="acc-title">فروشگاه‌ها</span>
+<span class="acc-icon" aria-hidden="true">+</span>
+</button>
+<div class="acc-panel">
+لیست فروشگاه‌های ما در شهرهای مختلف ایران با خدمات تست رایگان محصولات.
+</div>
+</div>
+
+<div class="acc-item">
+<button class="acc-header" aria-expanded="false">
+<span class="acc-title">راهنمای خرید</span>
+<span class="acc-icon" aria-hidden="true">+</span>
+</button>
+<div class="acc-panel">
+نحوه خرید و بررسی اصالت محصولات قبل از ثبت سفارش.
+</div>
+</div>
+
+<div class="acc-item">
+<button class="acc-header" aria-expanded="false">
+<span class="acc-title">گواهی‌ها</span>
+<span class="acc-icon" aria-hidden="true">+</span>
+</button>
+<div class="acc-panel">
+تمامی محصولات دارای مجوز رسمی از سازمان غذا و دارو هستند.
+</div>
+</div>
+
+<div class="acc-item">
+<button class="acc-header" aria-expanded="false">
+<span class="acc-title">روش‌های پرداخت</span>
+<span class="acc-icon" aria-hidden="true">+</span>
+</button>
+<div class="acc-panel">
+پرداخت امن از طریق درگاه‌های بانکی شتاب با امکان مرجوعی کالا.
+</div>
+</div>
+  </div>
+
+
+
+    </section>
+
+<br>
+<br>
+<br>
+
+
+    <section id="testimonials" class="testimonials-section section-padding">
+        <div class="container">
+            <h2 class="section-title">صدای مشتریان ما</h2>
+        </div>
+        <div class="testimonial-carousel-container">
+            <div class="testimonial-track"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <h2 class="section-title">ارتباط با ما</h2>
+            <div class="contact-wrapper">
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><h3>آدرس</h3><p>تهران، برج نگین، طبقه پنجم</p></div>
+                <div class="contact-item"><i class="fas fa-phone-alt"></i><h3>تلفن تماس</h3><p>۰۲۱-۲۲۸۸۴۴۶۶</p></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><h3>ایمیل</h3><p>info@sopranoshop.com</p></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="far fa-envelope"></i> عضویت در خبرنامه</h4>
+                    <p>از جدیدترین تخفیف‌ها باخبر شوید.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="ایمیل خود را وارد کنید">
+                        <div class="agreement"><input type="checkbox" id="agree"><label for="agree">با شرایط و قوانین موافقم.</label></div>
+                        <button type="submit" class="btn btn-newsletter"><span>ثبت</span></button>
+                    </form>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="fas fa-bolt"></i> دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="#">صفحه اصلی</a></li><li><a href="#">محصولات ویژه</a></li><li><a href="#">پرطرفدارترین‌ها</a></li><li><a href="#">پیگیری سفارش</a></li><li><a href="#">وبلاگ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="far fa-life-ring"></i> خدمات مشتریان</h4>
+                    <ul>
+                        <li><a href="#">پاسخ به پرسش‌های متداول</a></li><li><a href="#">شرایط بازگشت کالا</a></li><li><a href="#">حریم خصوصی</a></li><li><a href="#">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4><i class="far fa-gem"></i> درباره سوپرانو</h4>
+                    <p>مرجع تخصصی جدیدترین محصولات آرایشی.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./emtehan.js"></script>
+
+</body>
+</html>
