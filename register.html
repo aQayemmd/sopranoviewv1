@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام - Soprano Shop</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+
+        :root {
+            --primary-blue: #000000;
+            --primary-white: #ffffff;
+            --soft-background: #f4f4f7;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #e5e7eb;
+            --success-color: #22c55e;
+            --transition-speed: 0.4s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-background); color: var(--text-color); direction: rtl; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Header & Navbar --- */
+        .main-header { background-color: var(--primary-white); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000; }
+        .main-nav .container { max-width: 100%; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .nav-right { display: flex; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary-blue); text-decoration: none; margin-left: 30px; }
+        .nav-menu { list-style: none; display: flex; align-items: center; transition: max-height 0.5s ease-out; }
+        .nav-menu > li { margin: 0 15px; }
+        .nav-menu > li > a { text-decoration: none; color: var(--primary-blue); font-weight: 400; padding: 10px 0; }
+        .header-actions { display: flex; align-items: center; gap: 25px; }
+        .search-box { display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 20px; padding: 5px 10px; }
+        .search-box input { width: 180px; border: none; outline: none; background: transparent; padding: 5px; font-family: 'Vazirmatn', sans-serif; }
+        .search-box button { background: transparent; border: none; cursor: pointer; color: var(--primary-blue); }
+        .user-menu-container { position: relative; }
+        .header-icon { color: var(--primary-blue); font-size: 1.5rem; text-decoration: none; transition: all 0.3s ease; }
+        .header-icon:hover { color: #000000; transform: scale(1.1) rotate(-10deg); }
+        .user-dropdown-menu { display: none; position: absolute; top: 110%; left: 0; background-color: var(--primary-white); list-style: none; padding: 10px 0; border-radius: 8px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); min-width: 150px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .user-menu-container:hover .user-dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
+        .user-dropdown-menu li a { padding: 10px 20px; display: block; text-decoration: none; color: var(--text-color); }
+        .user-dropdown-menu li a:hover { background-color: var(--soft-background); }
+        
+        .hamburger-menu { display: none; font-size: 1.8rem; color: var(--primary-blue); background: none; border: none; cursor: pointer; }
+
+        /* --- Main Content --- */
+        .main-content { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px 0; }
+        .register-container { width: 100%; max-width: 450px; background-color: var(--primary-white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .register-header { text-align: center; margin-bottom: 30px; }
+        .register-header h1 { font-size: 2rem; color: var(--primary-blue); font-weight: 900; }
+        .register-header p { color: var(--light-text); margin-top: 10px; }
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 8px; color: var(--text-color); font-size: 0.9rem; }
+        .form-group input { width: 100%; padding: 12px 45px 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-family: 'Vazirmatn', sans-serif; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-group input:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.2); }
+        .form-group .input-icon { position: absolute; top: 42px; right: 15px; color: var(--light-text); font-size: 1.1rem; transition: color 0.4s ease, transform 0.4s ease; }
+        .form-group .input-icon.active { color: var(--primary-blue); transform: scale(1.1); }
+        .form-group .input-icon.match { color: var(--success-color); transform: scale(1.2); animation: bounceIn 0.5s; }
+        @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.1); opacity: 1; } 70% { transform: scale(0.9); } 100% { transform: scale(1); } }
+        .register-btn { width: 100%; padding: 15px; border: none; border-radius: 8px; background-color: var(--primary-blue); color: var(--primary-white); font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+        .register-btn:hover { background-color: #ff0000; transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 20px rgba(30, 64, 175, 0.3); }
+        .login-link { text-align: center; margin-top: 25px; font-size: 0.9rem; color: var(--light-text); }
+        .login-link a { color: var(--primary-blue); font-weight: 700; text-decoration: none; transition: color 0.3s ease; }
+        .login-link a:hover { color: #ff0000; }
+
+        /* ✨ استایل‌های ریسپانسیو */
+        @media (max-width: 992px) {
+            .nav-right .nav-menu {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: var(--primary-white);
+                width: 100%;
+                box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+                overflow: hidden;
+                max-height: 0;
+            }
+            .nav-right .nav-menu.active {
+                max-height: 300px;
+            }
+            .nav-menu > li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-menu > li:last-child {
+                border-bottom: none;
+            }
+            .hamburger-menu {
+                display: block;
+            }
+            .search-box {
+                display: none;
+            }
+        }
+        @media (max-width: 480px) {
+            .main-nav .container { padding: 0 20px; }
+            .register-container { 
+                padding: 30px 20px; 
+                /* 👇 تغییر اصلی: عرض را کمی کمتر کردیم تا از دیوار فاصله بگیرد */
+                width: calc(100% - 40px); 
+            }
+            .logo { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-right">
+                    <a href="index.html" class="logo">Soprano Shop</a>
+                    <ul class="nav-menu" id="nav-menu">
+                        <li><a href="index.html">خانه</a></li>
+                        <li><a href="#">ویژه‌ها</a></li>
+                        <li><a href="index.html#products">محصولات</a></li>
+                        <li><a href="#">پرطرفدارها</a></li>
+                        <li><a href="#contact">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" placeholder="جستجو...">
+                        <button><i class="fa fa-search"></i></button>
+                    </div>
+                    <div class="user-menu-container">
+                        <a href="#" class="header-icon" aria-label="حساب کاربری"><i class="far fa-user"></i></a>
+                        <ul class="user-dropdown-menu">
+                            <li><a href="login.html">ورود</a></li>
+                            <li><a href="register.html">ثبت نام</a></li>
+                        </ul>
+                    </div>
+                    <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="register-container">
+            <div class="register-header">
+                <h1>ایجاد حساب کاربری</h1>
+                <p>برای دسترسی به امکانات ویژه، ثبت‌نام کنید.</p>
+            </div>
+            <form action="#" method="POST" id="register-form">
+                <div class="form-group">
+                    <label for="username">نام کاربری</label>
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="username" class="form-input" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">تلفن همراه</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="tel" id="email" class="form-input" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="password" class="form-input" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">تکرار رمز عبور</label>
+                    <i class="fas fa-check-circle input-icon" id="confirm-password-icon"></i>
+                    <input type="password" id="confirm-password" class="form-input" name="confirm-password" required>
+                </div>
+                <button type="submit" class="register-btn">ثبت نام</button>
+            </form>
+            <div class="login-link">
+                قبلاً ثبت‌نام کرده‌اید؟ <a href="login.html">وارد شوید</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- بخش مربوط به فرم ---
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const confirmPasswordIcon = document.getElementById('confirm-password-icon');
+            const allInputs = document.querySelectorAll('.form-input');
+
+            function checkPasswords() {
+                confirmPasswordIcon.classList.remove('active');
+                if (passwordInput.value === confirmPasswordInput.value && confirmPasswordInput.value !== '') {
+                    confirmPasswordIcon.classList.add('match');
+                } else {
+                    confirmPasswordIcon.classList.remove('match');
+                    checkIconActivation(confirmPasswordInput);
+                }
+            }
+
+            function checkIconActivation(inputElement) {
+                const icon = inputElement.previousElementSibling;
+                if (icon && icon.classList.contains('input-icon')) {
+                    if (inputElement.value.trim() !== '') {
+                        icon.classList.add('active');
+                    } else {
+                        icon.classList.remove('active');
+                    }
+                }
+            }
+            
+            allInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (input.id === 'password' || input.id === 'confirm-password') {
+                        checkPasswords();
+                    } else {
+                        checkIconActivation(input);
+                    }
+                });
+            });
+            passwordInput.addEventListener('input', checkPasswords);
+
+            // --- اسکریپت منوی همبرگری ---
+            const hamburger = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+
+            hamburger.addEventListener('click', function() {                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
+`
