@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soprano Shop | سوپرانو شاپ</title>
+    <title>Valéroné | فروشگاه والرون</title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,7 +15,7 @@
         <nav class="main-nav">
             <div class="container">
                 <div class="nav-right">
-                    <a href="index.html" class="logo">Soprano Shop</a>
+                    <a href="index.html" class="logo"><h1 class="valerone-logo">Valéroné</h1></a>
                     <ul class="nav-menu">
                         <li><a href="index.html">خانه</a></li>
                         <li><a href="#">ویژه‌ها</a></li>
@@ -118,16 +118,53 @@
         <div class="container">
             <h1 class="section-title">محصولات ما</h1>
             <!-- فیلتر مرتب‌سازی (تغییر جدید) -->
-            <div class="filter-container">
-                <label for="sortFilter">مرتب‌سازی:</label>
-                <select id="sortFilter">
-                    <option value="default" >پیش‌فرض</option>
-                    <option value="expensive">گران‌ترین</option>
-                    <option value="cheap">ارزان‌ترین</option>
-                    <option value="popular">پرفروش‌ترین</option>
-                    <option value="newest">جدیدترین</option>
-                </select>
+
+            <div class="sort-bar">
+                <i class="fa-solid fa-arrow-down-a-z"></i>
+                <span class="sort-label" >مرتب سازی :</span>
+ 
+                 <ul class="sort-options">
+                   <li>پربازدیدترین</li>
+                   <li>جدیدترین</li>
+                   <li>پرفروش‌ترین</li>
+                   <li>ارزان‌ترین</li>
+                   <li>گران‌ترین</li>
+                   <li>سریع‌ترین ارسال</li>
+                   <li>پیشنهاد خریداران</li>
+                   <li>منتخب</li>
+                 </ul>
             </div>
+
+            <!-- [جدیدبازی] & Filter Capsules -->
+
+<!-- Mobile Sort (Only Mobile) -->
+<div class="mobile-sort">
+  <button id="sort-toggle" class="sort-btn-mobile">مرتب‌سازی</button>
+  
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Bottom Sheet Menu -->
+  <div id="sort-menu" class="bottom-sheet">
+    <div class="bottom-sheet-content">
+        <span id="close2">مرتب سازی بر اساس</span>
+      <div id="close1"> <i class="fa-solid fa-xmark" ></i></div> 
+      <button class="menu-item">پربازدیدترین</button>
+      <hr class="hr-in-moratab">
+      <button class="menu-item">ارزان‌ترین</button>
+      <hr class="hr-in-moratab">
+      <button class="menu-item">گران ترین</button>
+      
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+<br>
+
             <div class="product-grid"></div>
             <nav class="pagination-container" aria-label="Page navigation">
                 <ul class="pagination"></ul>
@@ -213,7 +250,7 @@
             <div class="contact-wrapper">
                 <div class="contact-item"><i class="fas fa-map-marker-alt"></i><h3>آدرس</h3><p>تهران، برج نگین، طبقه پنجم</p></div>
                 <div class="contact-item"><i class="fas fa-phone-alt"></i><h3>تلفن تماس</h3><p>۰۲۱-۲۲۸۸۴۴۶۶</p></div>
-                <div class="contact-item"><i class="fas fa-envelope"></i><h3>ایمیل</h3><p>info@sopranoshop.com</p></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><h3>ایمیل</h3><p>info@Valéroné.com</p></div>
             </div>
         </div>
     </section>
