@@ -1,234 +1,805 @@
-document.addEventListener('DOMContentLoaded', function () {
-            
-    // منوی کاربر
-    const userMenuContainer = document.querySelector('.user-menu-container');
-    const userMenuToggle = userMenuContainer ? userMenuContainer.querySelector('.header-icon') : null;
-    const userMenu = userMenuContainer ? userMenuContainer.querySelector('.user-dropdown-menu') : null;
-
-    if (userMenuToggle && userMenu) {
-        userMenuToggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            userMenu.classList.toggle('show');
-        });
-    }
-
-    document.addEventListener('click', function (e) {
-        if (userMenuContainer && !userMenuContainer.contains(e.target)) {
-            userMenu.classList.remove('show');
-        }
-    });
-
-    // === تغییر ۳: منوی موبایل (همبرگری) ===
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileNav = document.querySelector('.mobile-nav');
-
-    if (mobileMenuToggle && mobileNav) {
-        mobileMenuToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileNav.classList.toggle('active');
-            // تغییر آیکون همبرگر به X و بالعکس
-            const icon = this.querySelector('i');
-            if (icon) {
-                if (icon.classList.contains('fa-bars')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        });
-    }
-
-    // اسلایدر اصلی
-    new Swiper('#main-swiper', {
-        loop: true,
-        effect: 'fade',
-        autoplay: { delay: 5000 },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        speed: 1200,
-    });
-
-    const productsData = {
-        page1: [ 
-            { img: 'f50e0960-4d2c-4d9a-8125-23faf5392a82.jpg', name: 'کرم پودر مایع', category: 'کرم پودر', price: '۴۵۰,۰۰۰ تومان', priceNum: 450000, badge: 'NEW', colors: ['#FFB6C1', '#FF69B4', '#FFC0CB'] }, 
-            { img: 'e1298757-e3c4-467a-afc6-bb01be06421e.jpg', name: 'رژ لب مخملی', category: 'رژ لب', price: '۲۸۰,۰۰۰ تومان', priceNum: 280000, colors: ['#DC143C', '#8B0000', '#FF1493', '#C71585'] }, 
-            { img: 'In a smooth powder formula, the Revolution….jpg', name: 'پالت سایه چشم', category: 'سایه', price: '۷۲۰,۰۰۰ تومان', priceNum: 720000, colors: ['#D2691E', '#8B4513', '#A0522D'] }, 
-            { img: '7a1c36f1-b4b6-4fa3-8885-2b73b6a462d0.jpg', name: 'ریمل حجم‌دهنده', category: 'ریمل', price: '۳۴۰,۰۰۰ تومان', priceNum: 340000, badge: 'NEW' }, 
-            { img: 'Ying Yu Rollers.jpg', name: 'عطر زنانه فلورال', category: 'عطر', price: '۱,۵۰۰,۰۰۰ تومان', priceNum: 1500000, colors: ['#FFD700', '#FFA500'] }, 
-            { img: '57786db5-45e9-4bdd-a801-d13bca1ad161.jpg', name: 'کرم مرطوب‌کننده', category: 'مراقبت پوست', price: '۴۱۰,۰۰۰ تومان', priceNum: 410000 }, 
-            { img: '6419b01c-42b3-49dd-b134-c52452dec5a8.jpg', name: 'لاک ناخن ژلی', category: 'لاک', price: '۱۲۰,۰۰۰ تومان', priceNum: 120000, colors: ['#FF0000', '#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493'] }, 
-            { img: 'bee66b73-4581-473a-8a0c-146ee3e7a693.jpg', name: 'سرم پوست ویتامین C', category: 'مراقبت پوست', price: '۶۵۰,۰۰۰ تومان', priceNum: 650000, colors: ['#FFD700', '#FFA500', '#FF8C00'] }, 
-            { img: 'KIKO -- Artist Powder Face Brush.jpg', name: 'رژ گونه استیکی', category: 'رژ گونه', price: '۳۱۰,۰۰۰ تومان', priceNum: 310000, colors: ['#FF6B9D', '#FFB6C1'] }, 
-            { img: 'Lipstick White Transparent, Lipstick, Product, Make Up, Cosmetic PNG Image For Free Download.jpg', name: 'مداد چشم ضدآب', category: 'مداد چشم', price: '۱۹۰,۰۰۰ تومان', priceNum: 190000 }, 
-            { img: 'eaa10ba1-5e10-40cc-992a-368ca4f2b1e1.jpg', name: 'پرایمر مات‌کننده', category: 'پرایمر', price: '۳۹۰,۰۰۰ تومان', priceNum: 390000, badge: 'NEW', colors: ['#F5DEB3', '#FFE4B5', '#FFDEAD'] }, 
-            { img: 'ecdf96e6-fdb7-44e7-8d03-cb64c5895391.jpg', name: 'ست براش آرایشی', category: 'اکسسوری', price: '۸۵۰,۰۰۰ تومان', priceNum: 850000, colors: ['#000000', '#FF1493'] }, 
-        ],
-        page2: [ 
-            { img: '', name: 'اسپری فیکس', category: 'فیکساتور', price: '۲۹۰,۰۰۰ تومان', priceNum: 290000, colors: ['#87CEEB', '#00BFFF'] }, 
-            { img: '', name: 'کانسیلر مایع', category: 'کانسیلر', price: '۲۵۰,۰۰۰ تومان', priceNum: 250000, badge: 'NEW', colors: ['#F5DEB3', '#FFE4B5', '#FFDEAD', '#D2B48C'] }, 
-            { img: '', name: 'شاین لب', category: 'رژ لب', price: '۱۸۰,۰۰۰ تومان', priceNum: 180000, colors: ['#FF69B4', '#FFB6C1', '#FFC0CB'] }, 
-            { img: '', name: 'کرم ضد آفتاب', category: 'مراقبت پوست', price: '۵۵۰,۰۰۰ تومان', priceNum: 550000 }, 
-        ]
-    };
-
-    const productGrid = document.querySelector('.product-grid');
-    const paginationContainer = document.querySelector('.pagination');
-    let currentPage = 1;
-
-    // === تغییر ۱: فیلتر مرتب‌سازی محصولات ===
-    const sortSelect = document.getElementById('sort-select');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-            const sortValue = this.value;
-            sortProducts(sortValue);
-        });
-    }
-
-    function sortProducts(sortType) {
-        const currentProducts = productsData[`page${currentPage}`];
-        if (!currentProducts) return;
-
-        let sortedProducts = [...currentProducts];
-
-        switch(sortType) {
-            case 'price-asc':
-                sortedProducts.sort((a, b) => a.priceNum - b.priceNum);
-                break;
-            case 'price-desc':
-                sortedProducts.sort((a, b) => b.priceNum - a.priceNum);
-                break;
-            case 'name-asc':
-                sortedProducts.sort((a, b) => a.name.localeCompare(b.name, 'fa'));
-                break;
-            case 'name-desc':
-                sortedProducts.sort((a, b) => b.name.localeCompare(a.name, 'fa'));
-                break;
-            default:
-                // پیش‌فرض - ترتیب اصلی
-                break;
-        }
-
-        productsData[`page${currentPage}`] = sortedProducts;
-        renderProducts(currentPage);
-    }
-
-    function renderProducts(page) {
-        productGrid.innerHTML = '';
-        if (!productsData[`page${page}`]) return;
-        productsData[`page${page}`].forEach((product, index) => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.style.animationDelay = `${(index * 0.05) + 0.1}s`;
-
-            const badgeHTML = product.badge ? `<div class="product-badge">${product.badge}</div>` : '';
-            
-            const colorsHTML = product.colors ? 
-                `<div class="product-colors">${product.colors.map(color => 
-                    `<span class="color-swatch" style="background-color: ${color};"></span>`
-                ).join('')}</div>` : '';
-
-            card.innerHTML = `
-                ${badgeHTML}
-                <div class="img-container">
-                    <img src="${product.img}" alt="${product.name}">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">${product.name}</h3>
-                    <p class="product-category">${product.category}</p>
-                    ${colorsHTML}
-                    <p class="product-price">${product.price}</p>
-                    <a href="mahsool.html" class="btn">مشاهده جزئیات</a>
-                </div>
-            `;
-            productGrid.appendChild(card);
-        });
-    }
-
-    function setupPagination() {
-        paginationContainer.innerHTML = '';
-        for (let i = 1; i <= Object.keys(productsData).length; i++) {
-            const li = document.createElement('li');
-            if (i === currentPage) li.classList.add('active');
-            const a = document.createElement('a');
-            a.textContent = i; 
-            a.dataset.page = i; 
-            li.appendChild(a);
-            paginationContainer.appendChild(li);
-        }
-    }
-
-    paginationContainer.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A' && e.target.dataset.page) {
-            const page = parseInt(e.target.dataset.page, 10);
-            if (page !== currentPage) {
-                currentPage = page;
-                renderProducts(currentPage);
-                setupPagination();
-                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    });
-
-    renderProducts(currentPage);
-    setupPagination();
-    
-    // بخش testimonials (اصلاح شده برای infinite scroll بدون فضای خالی)
-const testimonialsData = [ 
-    { text: "طراحی سایت فوق‌العاده زیبا و آرامش‌بخشه. پیدا کردن محصولات خیلی راحته و از خریدم واقعا راضی هستم.", author: "سارا محمدی" }, 
-    { text: "کیفیت محصولات سوپرانو بی‌نظیره. بسته‌بندی شیک و ارسال سریع، همه چیز عالی بود. ممنونم!", author: "مریم رضایی" }, 
-    { text: "این بهترین تجربه‌ی خرید آنلاین من بود. سایت خیلی روان کار می‌کنه و افکت‌هاش خلاقانه است.", author: "نگار کریمی" }, 
-    { text: "عاشق کالکشن جدیدتون شدم! رنگ‌ها و کیفیت محصولات واقعا در سطح جهانیه.", author: "شیما وحدتی" }, 
-    { text: "پشتیبانی مشتریان بسیار حرفه‌ای و پاسخگو بود. حس خیلی خوبی از این خرید داشتم.", author: "آزاده تهرانی" }, 
-    { text: "محصولات کاملا گیاهی و بدون تست حیوانی هستند که برای من ارزش بسیار زیادی داره.", author: "پریسا نوری" } 
-];
-
-const track = document.querySelector('.testimonial-track');
-if (track) {
-    // تکرار ۶ بار برای پر شدن کامل صفحه و infinite scroll روان
-    const allCards = [
-        ...testimonialsData, 
-        ...testimonialsData, 
-        ...testimonialsData, 
-        ...testimonialsData,
-        ...testimonialsData, 
-        ...testimonialsData
-    ]; 
-    
-    allCards.forEach(testimonial => { 
-        const card = document.createElement('div');
-        card.className = 'testimonial-card';
-        card.innerHTML = `<p>"${testimonial.text}"</p><h4>- ${testimonial.author}</h4>`;
-        track.appendChild(card); 
-    });
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
+/*
+فونت بخش فیلتر مرتب سازی
+*/
+@font-face {
+    font-family: salam;
+    src: url(./IRANSansWeb\(FaNum\)_Bold.ttf);
 }
 
-const accItems = document.querySelectorAll('.acc-item');
-    accItems.forEach(item => {
-        const header = item.querySelector('.acc-header');
-        header.addEventListener('click', () => {
-            // بستن بقیه آیتم‌ها
-            accItems.forEach(i => {
-                if (i !== item) {
-                    i.classList.remove('open');
-                    i.querySelector('.acc-header').setAttribute('aria-expanded', 'false');
-                }
-            });
-            // باز/بسته کردن آیتم فعلی
-            const isOpen = item.classList.toggle('open');
-            header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
-    });
-    
-    document.addEventListener('DOMContentLoaded', () => {
-  const sortItems = document.querySelectorAll('.sort-options li');
-  sortItems.forEach(li => {
-    li.addEventListener('click', () => {
-      sortItems.forEach(i => i.classList.remove('active'));
-      li.classList.add('active');
-    });
-  });
-});
 
-});
+/*-------------------------------------------------------------*/
+/*این پایین برای فونت هست & font logo & لوگو */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
+.valerone-logo {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 2.8rem;
+  color: #000000; /* در تم تیره سفید، در تم روشن می‌تونی مشکی بذاری */
+  text-transform: capitalize;
+  text-align: center;
+}
+
+
+/*--------------------------------------------------------------*/
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Vazir", sans-serif;
+  font-size: 15px;
+  color: #444;
+  direction: rtl;
+}
+
+.sort-bar .fa-sort {
+  font-size: 15px;
+  color: #162d59;
+}
+
+.sort-bar .sort-label {
+  font-weight: 600;
+  color: #162d59;
+}
+
+.sort-options {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sort-options li {
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-family: salam;
+}
+
+.sort-options li:hover {
+  color: #e60023;
+}
+
+.sort-options li.active {
+  color: #e60023;
+  font-weight: bold;
+}
+
+
+.accordion {
+
+max-width: 640px;
+
+margin: 0 auto;
+
+direction: rtl;
+
+}
+
+.acc-item { border-bottom: 1px solid #e5e5e5; }
+
+.acc-header {
+
+width: 100%;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 12px;
+
+background: transparent;
+
+border: 0;
+
+padding: 16px 8px;
+
+cursor: pointer;
+
+text-align: right;
+
+font-weight: bold;
+
+font-size: 16px;
+
+color: #333;
+
+}
+
+.acc-header:hover { background: #fafafa; }
+
+.acc-icon {
+
+color: #9c0033; /* نزدیک به رنگ نمونه */
+
+font-size: 22px;
+
+line-height: 1;
+
+transition: transform 0.25s ease;
+
+display: inline-block;
+
+}
+
+.acc-panel {
+
+display: none;
+
+padding: 12px 12px 16px 12px;
+
+font-weight: normal;
+
+color: #555;
+
+background: #fdfdfd;
+
+}
+
+.acc-item.open .acc-panel { display: block; }
+
+.acc-item.open .acc-icon { transform: rotate(45deg); } /* + تبدیل به × شبیه باز بودن */
+
+
+:root {
+    --primary-blue: #1a1a1a;
+    --primary-white: #ffffff;
+    --soft-background: #f9f9f9;
+    --text-color: #333;
+    --light-text: #666;
+    --border-color: #e5e7eb;
+    --badge-color: #1a1a1a;
+    --transition-speed: 0.4s;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-background); color: var(--text-color); direction: rtl; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-padding { padding: 80px 0; }
+.section-title { text-align: center; font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 50px; }
+.btn { background-color: var(--primary-blue); color: var(--primary-white); border: none; padding: 14px 35px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; font-size: 1rem; cursor: pointer; display: inline-block; text-align: center; }
+.btn:hover { background-color: #000; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+
+/* --- Header & Navbar --- */
+.main-header { background-color: var(--primary-white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+.main-nav .container { max-width: 100%; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+.nav-right { display: flex; align-items: center; }
+.logo { font-size: 24px; font-weight: 700; color: var(--primary-blue); text-decoration: none; margin-left: 30px; }
+.nav-menu { list-style: none; display: flex; align-items: center; }
+.nav-menu > li { margin: 0 15px; }
+.nav-menu > li > a { text-decoration: none; color: var(--primary-blue); font-weight: 400; }
+.header-actions { display: flex; align-items: center; gap: 25px; }
+.search-box { display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 20px; padding: 5px 10px; }
+.search-box input { width: 180px; border: none; outline: none; background: transparent; padding: 5px; font-family: 'Vazirmatn', sans-serif; }
+.search-box button { background: transparent; border: none; cursor: pointer; color: var(--primary-blue); }
+.user-menu-container { position: relative; }
+.header-icon { color: var(--primary-blue); font-size: 1.5rem; text-decoration: none; transition: all 0.3s ease; }
+.header-icon:hover { color: #555; transform: scale(1.1) rotate(-10deg); }
+.user-dropdown-menu {
+    display: none; position: absolute; top: 110%; left: 0; background-color: var(--primary-white);
+    list-style: none; padding: 10px 0; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    min-width: 150px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.user-dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.user-dropdown-menu li a { padding: 10px 20px; display: block; text-decoration: none; color: var(--text-color); }
+.user-dropdown-menu li a:hover { background-color: var(--soft-background); }
+
+/* === تغییر ۳: منوی موبایل === */
+.mobile-menu-toggle {
+    display: none;
+}
+.mobile-nav {
+    display: none;
+    background-color: var(--primary-white);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.mobile-nav ul {
+    list-style: none;
+    padding: 15px 0;
+}
+.mobile-nav ul li {
+    border-bottom: 1px solid var(--border-color);
+}
+.mobile-nav ul li:last-child {
+    border-bottom: none;
+}
+.mobile-nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.mobile-nav ul li a:hover {
+    background-color: var(--soft-background);
+}
+.mobile-nav.active {
+    display: block;
+}
+
+/* --- Hero Slider --- */
+.main-slider { height: 70vh; min-height: 500px; position: relative; }
+#main-swiper { width: 100%; height: 100%; }
+.swiper-slide { display: flex !important; }
+.swiper-slide-content { display: flex; width: 100%; height: 100%; }
+.slide-image-wrapper { 
+    flex: 1; position: relative; background-size: cover; background-position: center; 
+    display: flex; flex-direction: column; justify-content: flex-end; align-items:flex-start;
+    padding: 5%; color: var(--primary-white); text-align: right;
+}
+.slide-image-wrapper a.btn { margin-top: 20px; }
+.slide-text h2, .slide-text p { margin: 0; }
+.slide-text h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 5px; }
+.slide-text p { font-size: 1.1rem; line-height: 1.5; }
+
+/* --- Products Section --- */
+/* === تغییر ۱: فیلتر مرتب‌سازی بالا راست‌چین === */
+.filter-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.filter-container label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+.filter-container select {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--primary-white);
+    color: var(--text-color);
+    font-family: 'Vazirmatn', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+.filter-container select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+}
+.product-card { 
+    background-color: var(--primary-white); 
+    border: 1px solid var(--border-color);
+    opacity: 0; 
+    transform: translateY(30px); 
+    animation: cascade-in 0.6s ease-out forwards; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+@keyframes cascade-in { to { opacity: 1; transform: translateY(0); } }
+
+.product-card .img-container { 
+    width: 100%; 
+    height: 280px; 
+    background-color: #fdfdfd;
+    overflow: hidden;
+    padding: 15px;
+}
+.product-card img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    transition: transform 0.4s ease; 
+}
+.product-card:hover img { 
+    transform: scale(1.08); 
+}
+
+@keyframes pop-in {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--badge-color);
+    color: var(--primary-white);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: pop-in 0.5s 0.5s ease-out backwards;
+}
+
+.product-info {
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    border-top: 1px solid var(--border-color);
+}
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 44px;
+}
+.product-category {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    margin: 5px 0 15px 0;
+}
+
+.product-colors {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.color-swatch:hover {
+    transform: scale(1.2);
+    border-color: #999;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--text-color);
+    margin-top: auto; 
+    padding-top: 15px;
+}
+.product-info .btn {
+    background-color: #2c2c2c;
+    color: var(--primary-white);
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.product-info .btn:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* === تغییر ۲: طراحی مجدد Pagination === */
+.pagination-container { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 60px; 
+    padding: 20px 0; 
+}
+.pagination { 
+    list-style: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+.pagination li {
+    margin: 0;
+}
+.pagination li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    height: 45px;
+    padding: 0 15px;
+    background-color: var(--primary-white);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.pagination li a:hover {
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.pagination li.active a {
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    border-color: var(--primary-blue);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Promo Banner --- */
+.promo-banner { padding: 100px 0; position: relative; background-image: url('https://images.unsplash.com/photo-1557822496-e72785f0426b?auto=format&fit=crop&w=1740&q=80'); background-size: cover; background-position: center center; background-attachment: fixed; color: var(--primary-white); text-align: center; }
+.promo-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); }
+
+/* --- Testimonials Section --- */
+
+#testimonials { position: relative; background-image: url('./slide5.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
+#testimonials::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
+#testimonials .section-title { color: var(--primary-white); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+.testimonial-carousel-container { width: 100%; overflow: hidden; padding: 20px 0; }
+.testimonial-carousel-container:hover .testimonial-track { animation-play-state: paused; }
+.testimonial-track { 
+    display: flex; 
+    animation: marquee 120s linear infinite; 
+    will-change: transform;
+}
+.testimonial-card { 
+    flex-shrink: 0; 
+    width: 320px; 
+    margin: 0 15px; 
+    background-color: var(--primary-white); 
+    padding: 30px; 
+    border-radius: 12px; 
+}
+.testimonial-card p { font-size: 1rem; color: var(--light-text); line-height: 1.8; margin-bottom: 20px; }
+.testimonial-card h4 { font-size: 1.1rem; color: var(--primary-blue); }
+@keyframes marquee { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+
+
+/* --- Contact Section --- */
+.contact-section { background-color: var(--primary-white); }
+.contact-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: center; }
+.contact-item i { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 20px; }
+.contact-item h3 { font-size: 1.5rem; color: var(--text-color); margin-bottom: 10px; }
+.contact-item p { font-size: 1rem; color: var(--light-text); line-height: 1.7; }
+
+/* --- Footer --- */
+.main-footer { padding: 60px 0; background-color: var(--primary-blue); color: var(--primary-white); }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; text-align: right; }
+.footer-col h4 { font-size: 1.2rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a { color: var(--primary-white); text-decoration: none; opacity: 0.8; }
+
+.footer-col p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+.newsletter-form {
+    margin-top: 20px;
+}
+.btn-newsletter {
+    border: 1px solid white;
+    width: 100%;
+}
+
+.newsletter-form input[type="email"] { width: 100%; padding: 12px; border: 2px solid rgba(255,255,255,0.5); border-radius: 8px; margin-bottom: 10px; background: transparent; color: white; }
+.agreement { display: flex; align-items: center; font-size: 0.8rem; opacity: 0.7; margin-bottom: 15px; }
+.social-icons { display: flex; gap: 20px; margin-top: 20px; }
+
+/* --- استایل‌های واکنش‌گرا --- */
+
+@media (max-width: 992px) {
+    .main-nav .container {
+        padding: 0 20px;
+    }
+    .logo {
+        font-size: 22px; 
+    }
+    .nav-menu > li {
+        margin: 0 10px;
+    }
+    .nav-menu > li > a {
+        font-size: 0.9rem;
+    }
+    .search-box input {
+        width: 120px;
+    }
+    .header-actions {
+        gap: 15px;
+    }
+
+    .slide-text h2 {
+        font-size: 1.8rem;
+    }
+    .slide-text p {
+        font-size: 1rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 60px 0;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    .btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+    }
+
+    /* --- Header --- */
+    .main-nav .container {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        row-gap: 15px;
+        justify-content: center;
+    }
+    .nav-right {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+    .logo {
+        margin-left: 0;
+    }
+    .nav-menu {
+        display: none; /* مخفی کردن منوی دسکتاپ در موبایل */
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        border-top: 1px solid var(--border-color);
+        padding-top: 15px;
+    }
+    .search-box {
+        flex-grow: 1;
+    }
+    .search-box input {
+        width: 100%;
+        flex-grow: 1;
+    }
+    .user-dropdown-menu {
+        left: auto;
+        right: 0; 
+    }
+    /* نمایش آیکون منوی موبایل */
+    .mobile-menu-toggle {
+        display: inline-block;
+    }
+
+    /* فیلتر در موبایل */
+    .filter-container {
+        justify-content: start;
+        margin-bottom: 20px;
+    }
+
+    /* --- Hero Slider --- */
+    .main-slider {
+        height: auto;
+        min-height: 400px;
+    }
+    .swiper-slide-content {
+        flex-direction: row; 
+    }
+    .slide-image-wrapper {
+        min-height: 400px;
+        padding: 10%;
+        align-items: center;
+        text-align: center;
+    }
+    .slide-text h2 {
+        font-size: 1.6rem;
+    }
+
+    /* --- محصولات: دو تا دو تا در موبایل --- */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .product-card .img-container {
+        height: 180px;
+    }
+    .product-info {
+        padding: 15px;
+    }
+    .product-name {
+        font-size: 0.9rem;
+        min-height: auto;
+    }
+    .product-category {
+        font-size: 0.8rem;
+        margin: 3px 0 8px 0;
+    }
+    .product-price {
+        font-size: 1rem;
+        padding-top: 10px;
+    }
+    .product-info .btn {
+        padding: 10px;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+    .product-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 0.65rem;
+        top: 10px;
+        left: 10px;
+    }
+    .color-swatch {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Pagination در موبایل */
+    .pagination li a {
+        min-width: 38px;
+        height: 38px;
+        padding: 0 12px;
+        font-size: 0.9rem;
+    }
+
+    /* --- Promo Banner --- */
+    .promo-banner {
+        background-attachment: scroll;
+        padding: 80px 0;
+    }
+    .promo-banner h2 {
+        font-size: 1.8rem;
+    }
+
+    /* --- Testimonials --- */
+    #testimonials {
+        background-attachment: scroll;
+    }
+    .testimonial-card {
+        width: 280px; 
+        margin: 0 10px;
+    }
+
+    /* --- Footer --- */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    .footer-col h4 {
+        justify-content: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+
+    .sort-bar{
+        display: none;
+        
+
+    }
+
+    /*salam*/
+
+  .mobile-sort {
+    display: block;
+    position: relative;
+  }
+
+  .sort-btn-mobile {
+    padding: 0.6rem 1rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    color: #222;
+    cursor: pointer;
+  }
+
+  /* Overlay (متن تار) */
+  .overlay {
+    display: none; /* پیش فرض مخفی */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 998;
+  }
+  .overlay.active {
+    display: block;
+  }
+
+  /* Bottom Sheet */
+  .bottom-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: -220px; /* باید ارتفاع منو رو پوشش بده */
+    background: #fff;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    transition: bottom 0.3s ease;
+    z-index: 999;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .bottom-sheet.active {
+    bottom: 0;
+  }
+
+  /* محتوا */
+  .bottom-sheet-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .menu-item {
+    padding: 0.8rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #222;
+    font-family: salam;
+  }
+  .menu-item:last-child {
+    border-bottom: none;
+  }
+  .menu-item:hover {
+    background-color: #f5f5f5;
+  }
+  .bottom-sheet.active { bottom: 0; }
+
+ 
+#close1 {
+  margin-left: 10px; /* فاصله از کناره چپ */
+  position: fixed;left: 5px;
+}
+#close2{
+    direction: rtl;
+    font-family: salam;
+}
+
+.hr-in-moratab{
+    width: 100%;
+    opacity: 10%;
+}
+
+#sort-toggle{font-family: salam;}
+
+}
