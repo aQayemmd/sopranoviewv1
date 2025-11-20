@@ -547,6 +547,8 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
     }
 }
 
+.mobile-sort{display:none;}
+
 @media (max-width: 768px) {
     .section-padding {
         padding: 60px 0;
@@ -803,3 +805,4 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
 #sort-toggle{font-family: salam;}
 
 }
+
