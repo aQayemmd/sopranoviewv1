@@ -12,20 +12,22 @@
     
     <!-- لینک به فایل CSS جداگانه -->
     <link rel="stylesheet" href="mahsool.css">
+    <script src="./mahsool.js"> </script>
 </head>
 <body>
+
 
     <header class="main-header">
         <nav class="main-nav">
             <div class="container">
                 <div class="nav-right">
-                    <a href="index.html" class="logo">Soprano Shop</a>
-                    <ul class="nav-menu">
-                        <li><a href="index.html">خانه</a></li>
+                    <a href="index.html" class="logo"><h1 class="valerone-logo">Valéroné</h1></a>
+                    <ul class="nav-menu" id="nav-menu">
+                        <li><a href="emtehan.html">خانه</a></li>
                         <li><a href="#">ویژه‌ها</a></li>
                         <li><a href="index.html#products">محصولات</a></li>
                         <li><a href="#">پرطرفدارها</a></li>
-                        <li><a href="#product-info-tabs">تماس با ما</a></li>
+                        <li><a href="emtehan.html#contact">تماس با ما</a></li>
                     </ul>
                 </div>
                 <div class="header-actions">
@@ -36,10 +38,13 @@
                     <div class="user-menu-container">
                         <a href="#" class="header-icon" aria-label="حساب کاربری"><i class="far fa-user"></i></a>
                         <ul class="user-dropdown-menu">
-                            <li><a href="#">ورود</a></li>
-                            <li><a href="#">ثبت نام</a></li>
+                            <li><a href="login.html">ورود</a></li>
+                            <li><a href="register.html">ثبت نام</a></li>
                         </ul>
                     </div>
+                    <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -55,9 +60,9 @@
             <div class="pupa-image-section">
                 <!-- محل قرارگیری عکس شما -->
                 <!-- بعداً تگ img زیر را با عکس خودت جایگزین کن -->
-                <div class="pupa-image-placeholder">
+              
                 <img src="./pazs-removebg-preview.png" width=300px" height="300px">
-                </div>
+                
             </div>
 
             <!-- ستون راست: اطلاعات -->
@@ -188,29 +193,19 @@
             </div>
         </section>
 
-        <section class="recommendations-section">
-            <h2 class="section-title">پیشنهاد ما</h2>
-            <div class="recommendations-track">
-                <div class="product-card"><img src="a.jpg" alt="رژ گونه"><h4>رژ گونه استیکی</h4><p>۳۱۰,۰۰۰ تومان</p></div>
-                <div class="product-card"><img src="b.jpg" alt="لاک ناخن"><h4>لاک ناخن ژلی</h4><p>۱۲۰,۰۰۰ تومان</p></div>
-                <div class="product-card"><img src="c.jpg" alt="مداد چشم"><h4>مداد چشم ضدآب</h4><p>۱۹۰,۰۰۰ تومان</p></div>
-                <div class="product-card"><img src="a.jpg" alt="رژ گونه"><h4>رژ گونه استیکی</h4><p>۳۱۰,۰۰۰ تومان</p></div>
-                <div class="product-card"><img src="b.jpg" alt="لاک ناخن"><h4>لاک ناخن ژلی</h4><p>۱۲۰,۰۰۰ تومان</p></div>
-                <div class="product-card"><img src="c.jpg" alt="مداد چشم"><h4>مداد چشم ضدآب</h4><p>۱۹۰,۰۰۰ تومان</p></div>
-            </div>
-        </section>
+        
     </main>
 
-    <footer class="main-footer">
+   <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4><i class="far fa-envelope"></i> عضویت در خبرنامه</h4>
-                    <p style="opacity: 0.8; font-size: 0.9rem; line-height: 1.8;">از جدیدترین تخفیف‌ها باخبر شوید.</p>
-                    <form class="newsletter-form" style="margin-top: 20px;">
+                    <p>از جدیدترین تخفیف‌ها باخبر شوید.</p>
+                    <form class="newsletter-form">
                         <input type="email" placeholder="ایمیل خود را وارد کنید">
                         <div class="agreement"><input type="checkbox" id="agree"><label for="agree">با شرایط و قوانین موافقم.</label></div>
-                        <button type="submit" class="btn btn-newsletter" style="width: 100%;border:0.1px solid rgb(194, 194, 194)"><span>ثبت</span></button>
+                        <button type="submit" class="btn btn-newsletter"><span>ثبت</span></button>
                     </form>
                 </div>
                 <div class="footer-col">
@@ -227,7 +222,7 @@
                 </div>
                 <div class="footer-col">
                     <h4><i class="far fa-gem"></i> درباره سوپرانو</h4>
-                    <p style="opacity: 0.8; font-size: 0.9rem; line-height: 1.8;">مرجع تخصصی جدیدترین محصولات آرایشی.</p>
+                    <p>مرجع تخصصی جدیدترین محصولات آرایشی.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
@@ -238,107 +233,5 @@
         </div>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // اسکریپت‌های قبلی برای زوم و گالری را غیرفعال کردیم چون HTML آن‌ها حذف شده است.
-        // کدهای مربوط به تب‌ها و بقیه بخش‌ها همچنان کار می‌کنند.
-
-        const wishlistBtn = document.querySelector('.wishlist-btn');
-        if(wishlistBtn) wishlistBtn.addEventListener('click', function() {
-            this.classList.toggle('active');
-            const heartIcon = this.querySelector('i');
-            heartIcon.classList.toggle('far');
-            heartIcon.classList.toggle('fas');
-        });
-
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabPanes.forEach(pane => pane.classList.remove('active'));
-                this.classList.add('active');
-                const tabId = this.dataset.tab;
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-
-        document.querySelectorAll('.pros-cons-toggle button').forEach(button => {
-            button.addEventListener('click', function() {
-                const reviewItem = this.closest('.review-item');
-                const contentWrapper = reviewItem.querySelector('.review-pros-cons');
-                const targetContentType = this.dataset.target;
-                const prosContent = contentWrapper.querySelector('.pros');
-                const consContent = contentWrapper.querySelector('.cons');
-
-                if (contentWrapper.classList.contains('active') && contentWrapper.dataset.activeContent === targetContentType) {
-                    contentWrapper.classList.remove('active');
-                    contentWrapper.removeAttribute('data-active-content');
-                } else {
-                    if (targetContentType === 'pros') {
-                        if (prosContent) prosContent.style.display = 'block';
-                        if (consContent) consContent.style.display = 'none';
-                    } else {
-                        if (prosContent) prosContent.style.display = 'none';
-                        if (consContent) consContent.style.display = 'block';
-                    }
-                    contentWrapper.classList.add('active');
-                    contentWrapper.dataset.activeContent = targetContentType;
-                }
-            });
-        });
-
-        const track = document.querySelector('.recommendations-track');
-        if (track && track.children.length > 0) {
-            const products = Array.from(track.children);
-            products.forEach(product => {
-                const clone = product.cloneNode(true);
-                track.appendChild(clone);
-            });
-            const card = products[0];
-            const cardWidth = card.offsetWidth;
-            const cardMargin = parseInt(window.getComputedStyle(card).marginRight) * 2;
-            const totalWidth = (cardWidth + cardMargin) * products.length * 2;
-            track.style.width = `${totalWidth}px`;
-            const duration = products.length * 8;
-            track.style.animation = `marquee-recom ${duration}s linear infinite`;
-        }
-        
-        document.querySelectorAll('.submit-action-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const formId = this.dataset.form;
-                const formElement = document.getElementById(formId);
-                if (formElement) {
-                    formElement.classList.toggle('active');
-                }
-            });
-        });
-
-        const starRatingContainer = document.querySelector('.interactive-star-rating');
-        if (starRatingContainer) {
-            const stars = starRatingContainer.querySelectorAll('i');
-            stars.forEach(star => {
-                star.addEventListener('mouseover', function() {
-                    const rating = this.dataset.value;
-                    stars.forEach(s => {
-                        s.classList.toggle('fas', s.dataset.value <= rating);
-                        s.classList.toggle('far', s.dataset.value > rating);
-                    });
-                });
-                star.addEventListener('mouseleave', function() {
-                    const currentRating = starRatingContainer.dataset.rating;
-                    stars.forEach(s => {
-                        s.classList.toggle('fas', s.dataset.value <= currentRating);
-                        s.classList.toggle('far', s.dataset.value > currentRating);
-                    });
-                });
-                star.addEventListener('click', function() {
-                    starRatingContainer.dataset.rating = this.dataset.value;
-                });
-            });
-        }
-    });
-    </script>
 </body>
 </html>
