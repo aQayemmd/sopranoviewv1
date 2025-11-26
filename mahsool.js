@@ -104,3 +104,215 @@
             hamburger.addEventListener('click', function() {                navMenu.classList.toggle('active');
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+    // =========================================
+    // 1. مدیریت بخش تعداد (Quantity Selector)
+    // =========================================
+    const qtyValueSpan = document.querySelector('.pupa-qty-value');
+    const qtyButtons = document.querySelectorAll('.pupa-qty-btn');
+    
+    if (qtyValueSpan && qtyButtons.length === 2) {
+        const minusBtn = qtyButtons[0]; // اولین دکمه (طبق HTML شما منفی است)
+        const plusBtn = qtyButtons[1];  // دومین دکمه (طبق HTML شما مثبت است)
+
+        // کاهش تعداد
+        minusBtn.addEventListener('click', function () {
+            let currentQty = parseInt(qtyValueSpan.innerText);
+            if (currentQty > 1) {
+                qtyValueSpan.innerText = currentQty - 1;
+            }
+        });
+
+        // افزایش تعداد
+        plusBtn.addEventListener('click', function () {
+            let currentQty = parseInt(qtyValueSpan.innerText);
+            qtyValueSpan.innerText = currentQty + 1;
+        });
+    }
+
+    // =========================================
+    // 2. مدیریت انتخاب رنگ (Color Selector)
+    // =========================================
+    const colorOptions = document.querySelectorAll('.pupa-color-opt');
+    const previewDot = document.querySelector('.pupa-selected-preview .pupa-dot');
+    const previewText = document.querySelector('.pupa-selected-preview span:last-child');
+
+    // نقشه‌برداری نام رنگ‌ها بر اساس کلاس‌های موجود در CSS
+    const colorNames = {
+        'c-pink': '001 - صورتی',
+        'c-peach': '002 - هلویی',
+        'c-light': '003 - روشن'
+    };
+
+    if (colorOptions.length > 0) {
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                // الف: حذف کلاس active از همه گزینه‌ها
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+
+                // ب: افزودن کلاس active به گزینه کلیک شده
+                this.classList.add('active');
+
+                // ج: دریافت رنگ پس‌زمینه واقعی از CSS برای نمایش در دایره بالا
+                const computedStyle = window.getComputedStyle(this);
+                const bgColor = computedStyle.backgroundColor;
+                
+                if (previewDot) {
+                    previewDot.style.backgroundColor = bgColor;
+                }
+
+                // د: تغییر متن بر اساس کلاسی که المان دارد
+                if (previewText) {
+                    let foundName = 'انتخاب شده'; // پیش‌فرض
+                    
+                    // بررسی می‌کنیم کدام کلاس رنگ (c-pink, ...) را دارد
+                    for (const [cls, name] of Object.entries(colorNames)) {
+                        if (this.classList.contains(cls)) {
+                            foundName = name;
+                            break;
+                        }
+                    }
+                    previewText.innerText = foundName;
+                }
+            });
+        });
+    }
+
+    // =========================================
+    // 3. مدیریت دکمه افزودن به سبد (جهت تست)
+    // =========================================
+    const addToCartBtn = document.querySelector('.pupa-add-btn');
+    
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function () {
+            const selectedQty = document.querySelector('.pupa-qty-value').innerText;
+            const selectedColorText = document.querySelector('.pupa-selected-preview span:last-child').innerText;
+            
+            // نمایش پیام یا ارسال به بک‌اند
+            alert(`محصول به سبد اضافه شد:\nتعداد: ${selectedQty}\nرنگ: ${selectedColorText}`);
+        });
+    }
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // =========================================
+    // 1. مدیریت بخش تعداد (Quantity Selector)
+    // =========================================
+    const qtyValueSpan = document.querySelector('.pupa-qty-value');
+    const qtyButtons = document.querySelectorAll('.pupa-qty-btn');
+    
+    if (qtyValueSpan && qtyButtons.length === 2) {
+        const minusBtn = qtyButtons[0]; 
+        const plusBtn = qtyButtons[1];  
+
+        minusBtn.addEventListener('click', function () {
+            let currentQty = parseInt(qtyValueSpan.innerText);
+            if (currentQty > 1) {
+                qtyValueSpan.innerText = currentQty - 1;
+            }
+        });
+
+        plusBtn.addEventListener('click', function () {
+            let currentQty = parseInt(qtyValueSpan.innerText);
+            qtyValueSpan.innerText = currentQty + 1;
+        });
+    }
+
+    // =========================================
+    // 2. مدیریت انتخاب رنگ (دکمه‌های مربعی پایین)
+    // =========================================
+    const colorOptions = document.querySelectorAll('.pupa-color-opt');
+    const previewDot = document.querySelector('.pupa-selected-preview .pupa-dot');
+    
+    // این بخش مسئول تغییر رنگ دایره و اکتیو کردن مربع‌هاست
+    if (colorOptions.length > 0) {
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function () {
+                // حذف کلاس active از همه
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                // افزودن به کلیک شده
+                this.classList.add('active');
+
+                // گرفتن رنگ پس‌زمینه و اعمال به دایره بالا
+                const computedStyle = window.getComputedStyle(this);
+                const bgColor = computedStyle.backgroundColor;
+                
+                if (previewDot) {
+                    previewDot.style.backgroundColor = bgColor;
+                }
+            });
+        });
+    }
+
+    // =========================================
+    // 3. مدیریت منوی دراپ‌داون (بخش جدید)
+    // =========================================
+    const dropdownTrigger = document.getElementById('pupaDropdownTrigger');
+    const dropdownMenu = document.getElementById('pupaDropdownMenu');
+    const selectedTextSpan = document.getElementById('pupaSelectedText');
+    
+    // الف: باز و بسته کردن منو
+    if (dropdownTrigger && dropdownMenu) {
+        dropdownTrigger.addEventListener('click', function(e) {
+            e.stopPropagation(); // جلوگیری از انتشار کلیک
+            dropdownMenu.classList.toggle('show');
+            
+            // چرخش فلش
+            const icon = this.querySelector('.fa-chevron-down');
+            if(icon) icon.style.transform = dropdownMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0)';
+        });
+    }
+
+    // ب: انتخاب آیتم از لیست متنی
+    const menuItems = document.querySelectorAll('.pupa-dropdown-menu li');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const colorName = this.getAttribute('data-name');
+            const colorClass = this.getAttribute('data-color-class');
+
+            // 1. آپدیت متن داخل کادر بالا
+            if(selectedTextSpan) selectedTextSpan.innerText = colorName;
+
+            // 2. پیدا کردن مربع رنگی مربوطه و کلیک خودکار روی آن
+            // (این کار باعث می‌شود دایره رنگی و استایل اکتیو توسط بخش شماره 2 همین کد انجام شود)
+            const relatedSquareBtn = document.querySelector(`.pupa-color-opt.${colorClass}`);
+            if (relatedSquareBtn) {
+                relatedSquareBtn.click(); 
+            }
+
+            // 3. بستن منو
+            if(dropdownMenu) dropdownMenu.classList.remove('show');
+            const icon = dropdownTrigger.querySelector('.fa-chevron-down');
+            if(icon) icon.style.transform = 'rotate(0)';
+        });
+    });
+
+    // ج: بستن منو اگر جای دیگری از صفحه کلیک شد
+    document.addEventListener('click', function(e) {
+        if (dropdownMenu && dropdownMenu.classList.contains('show')) {
+            if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+                const icon = dropdownTrigger.querySelector('.fa-chevron-down');
+                if(icon) icon.style.transform = 'rotate(0)';
+            }
+        }
+    });
+
+    // =========================================
+    // 4. دکمه افزودن به سبد (تست)
+    // =========================================
+    const addToCartBtn = document.querySelector('.pupa-add-btn');
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function () {
+            const selectedQty = document.querySelector('.pupa-qty-value').innerText;
+            const selectedColorText = document.getElementById('pupaSelectedText') ? document.getElementById('pupaSelectedText').innerText : 'انتخاب نشده';
+            
+            alert(`محصول به سبد اضافه شد:\nتعداد: ${selectedQty}\nرنگ: ${selectedColorText}`);
+        });
+    }
+
+});
