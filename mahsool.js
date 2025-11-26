@@ -303,7 +303,68 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
 });
 
+// تمام بخش جاوای اسلاید پایین سایت
+document.addEventListener('DOMContentLoaded', function() {
+    const recomSwiper = new Swiper('.pupa-recom-swiper', {
+        // چرخه بی‌پایان
+        loop: true,
+        
+        // تعداد اسلایدها: 'auto' باعث می‌شود عرض 270px کارت‌ها که در CSS دادیم رعایت شود
+        slidesPerView: 'auto',
+        
+        // فاصله بین کارت‌ها (به پیکسل)
+        spaceBetween: 10,
+        
+        // وسط چین کردن اسلاید فعال (اختیاری)
+        centeredSlides: false, 
 
+        // حرکت آزاد (Free Mode) برای روانی بیشتر هنگام تاچ کردن
+        freeMode: true,
+
+        // تنظیمات حرکت خودکار
+        autoplay: {
+            delay: 2500, // هر 2.5 ثانیه حرکت کند
+            disableOnInteraction: false, // اگر کاربر دست زد، بعدش دوباره حرکت شروع شود
+            pauseOnMouseEnter: true, // وقتی موس رفت روش، بایستد (طبق خواسته قبلی شما)
+        },
+        
+        // برای جلوگیری از باگ در بارگذاری اولیه
+        observer: true,
+        observeParents: true,
+    });
+});
+
+ document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.pupa-recom-swiper', {
+            // چرخه بی‌پایان
+            loop: true,
+            
+            // این گزینه باعث می‌شود عرض کارت‌ها از CSS خوانده شود
+            slidesPerView: 'auto',
+            
+            // وسط چین بودن را خاموش می‌کنیم تا از چپ/راست مرتب چیده شوند
+            centeredSlides: false,
+            
+            // اتوپلی
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+
+            // بخش حیاتی برای ریسپانسیو (اینجا فاصله را تنظیم می‌کنیم)
+            breakpoints: {
+                // تنظیمات برای موبایل (زیر 768 پیکسل)
+                320: {
+                    spaceBetween: 15, // فاصله ۱۵ پیکسل (با CSS مچ می‌شود)
+                },
+                // تنظیمات برای دسکتاپ (بالای 768 پیکسل)
+                768: {
+                    spaceBetween: 25, // فاصله بیشتر برای دسکتاپ
+                }
+            }
+        });
+    });
+//بخش اسلاید سایت تمام شد
