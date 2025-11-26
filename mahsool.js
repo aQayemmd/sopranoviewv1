@@ -308,63 +308,47 @@ document.addEventListener('DOMContentLoaded', function () {
 // تمام بخش جاوای اسلاید پایین سایت
 document.addEventListener('DOMContentLoaded', function() {
     const recomSwiper = new Swiper('.pupa-recom-swiper', {
-        // چرخه بی‌پایان
+        // چرخه بی‌پایان (نکته مهم: باید تعداد اسلایدها کافی باشد تا لوپ درست کار کند)
         loop: true,
         
-        // تعداد اسلایدها: 'auto' باعث می‌شود عرض 270px کارت‌ها که در CSS دادیم رعایت شود
+        // تنظیم عرض کارت‌ها بر اساس CSS
         slidesPerView: 'auto',
         
-        // فاصله بین کارت‌ها (به پیکسل)
-        spaceBetween: 10,
-        
-        // وسط چین کردن اسلاید فعال (اختیاری)
-        centeredSlides: false, 
+        // وسط‌چین کردن اسلاید فعال
+        // (برای موبایل معمولا true بهتر است تا فضای خالی اطراف متوازن شود)
+        centeredSlides: true, 
 
-        // حرکت آزاد (Free Mode) برای روانی بیشتر هنگام تاچ کردن
-        freeMode: true,
+        // غیرفعال کردن حالت Free Mode در لوپ برای جلوگیری از پرش‌های ناگهانی
+        freeMode: false,
+
+        // تنظیم جهت دایرکشن برای زبان فارسی (بسیار مهم برای باگ‌های سمت چپ/راست)
+        dir: 'rtl', 
 
         // تنظیمات حرکت خودکار
         autoplay: {
-            delay: 2500, // هر 2.5 ثانیه حرکت کند
-            disableOnInteraction: false, // اگر کاربر دست زد، بعدش دوباره حرکت شروع شود
-            pauseOnMouseEnter: true, // وقتی موس رفت روش، بایستد (طبق خواسته قبلی شما)
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
         },
         
-        // برای جلوگیری از باگ در بارگذاری اولیه
+        // جلوگیری از باگ لود شدن
         observer: true,
         observeParents: true,
+
+        // تنظیمات ریسپانسیو (فاصله‌ها)
+        breakpoints: {
+            // موبایل (زیر 768 پیکسل)
+            320: {
+                spaceBetween: 15, 
+                centeredSlides: true, // در موبایل وسط‌چین باشد که زیبا دیده شود
+            },
+            // دسکتاپ (بالای 768 پیکسل)
+            768: {
+                spaceBetween: 25,
+                centeredSlides: false, // در دسکتاپ از ابتدای خط شروع شود
+            }
+        }
     });
 });
 
- document.addEventListener('DOMContentLoaded', function() {
-        new Swiper('.pupa-recom-swiper', {
-            // چرخه بی‌پایان
-            loop: true,
-            
-            // این گزینه باعث می‌شود عرض کارت‌ها از CSS خوانده شود
-            slidesPerView: 'auto',
-            
-            // وسط چین بودن را خاموش می‌کنیم تا از چپ/راست مرتب چیده شوند
-            centeredSlides: false,
-            
-            // اتوپلی
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-
-            // بخش حیاتی برای ریسپانسیو (اینجا فاصله را تنظیم می‌کنیم)
-            breakpoints: {
-                // تنظیمات برای موبایل (زیر 768 پیکسل)
-                320: {
-                    spaceBetween: 15, // فاصله ۱۵ پیکسل (با CSS مچ می‌شود)
-                },
-                // تنظیمات برای دسکتاپ (بالای 768 پیکسل)
-                768: {
-                    spaceBetween: 25, // فاصله بیشتر برای دسکتاپ
-                }
-            }
-        });
-    });
 //بخش اسلاید سایت تمام شد
