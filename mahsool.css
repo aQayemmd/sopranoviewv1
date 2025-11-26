@@ -106,16 +106,246 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--primary-whi
 .interactive-star-rating i { font-size: 1.5rem; color: var(--border-color); cursor: pointer; transition: color 0.2s ease; }
 .interactive-star-rating i:hover, .interactive-star-rating i.selected { color: var(--star-color); }
 
-/* --- Recommendations --- */
-.recommendations-section { position: relative; overflow: hidden; padding: 60px 0; }
-.recommendations-track { display: flex; }
-@keyframes marquee-recom { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.recommendations-section:hover .recommendations-track { animation-play-state: paused; }
-.recommendations-section .product-card { width: 270px; margin: 0 15px; flex-shrink: 0; background-color: var(--soft-background); border-radius: 12px; overflow: hidden; text-align: center; border: 1px solid var(--border-color); }
-.product-card img { width: 100%; height: 200px; object-fit: cover; }
-.product-card h4 { font-size: 1.2rem; margin: 15px 10px 10px; color: var(--text-color); }
-.product-card p { font-size: 1rem; color: var(--primary-blue); font-weight: bold; margin-bottom: 20px; }
+/* --- Recommendations --- تمام استایل های مرتبط با اسلاید پایین وب*/
+/* --- تنظیمات کلی --- */
+.recommendations-section {
+    padding: 20px 0 40px 0;
+    background: transparent;
+    overflow: hidden; /* جلوگیری از اسکرول افقی ناخواسته */
+}
 
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.pupa-recom-swiper {
+    width: 100%;
+    padding: 10px 15px; /* پدینگ از چپ و راست */
+    box-sizing: border-box;
+}
+
+/* --- کارت محصول --- */
+.product-card {
+    /* دسکتاپ */
+    width: 250px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* وسط چین کردن آیتم‌ها */
+}
+
+.product-card h4 {
+    font-size: 0.95rem;
+    margin: 10px 0 5px;
+    color: #000;
+    text-align: center;
+    font-weight: normal;
+}
+
+.product-card p {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+/* --- عکس و هاور --- */
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    /* ارتفاع عکس در دسکتاپ */
+    height: 250px; 
+    overflow: hidden;
+    border-radius: 12px; /* گردی گوشه‌ها */
+    background-color: #f9f9f9; /* رنگ پس‌زمینه خاکستری خیلی کمرنگ برای عکس */
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* عکس کامل فیت شود */
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* لایه سیاه هاور */
+.hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.view-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+/* فقط در دسکتاپ هاور کار کند */
+@media (min-width: 769px) {
+    .product-image-wrapper:hover .hover-overlay { opacity: 1; visibility: visible; }
+    .product-image-wrapper:hover .view-btn { transform: translateY(0); }
+    .product-image-wrapper:hover img { transform: scale(1.05); }
+}
+
+
+/* --- تنظیمات موبایل (اصلاح سایز) --- */
+@media (max-width: 768px) {
+    .pupa-recom-swiper {
+        padding: 0 10px; /* پدینگ کمتر در موبایل */
+    }
+
+    .product-card {
+        /* نکته مهم: عرض متناسب با صفحه */
+        width: calc(50% - 10px) !important; 
+    }
+
+    .product-image-wrapper {
+        height: auto !important;
+        aspect-ratio: 1 / 1; /* عکس همیشه مربعی بماند */
+    }
+
+    .product-card h4 {
+        font-size: 0.8rem;
+        margin-top: 8px;
+    }
+    
+    .product-card p {
+        font-size: 0.8rem;
+    }
+}
+/*اسلاید وب پایین تموم شد*/
+
+.pupa-recom-swiper {
+    width: 100%;
+    padding: 10px; 
+}
+
+/* --- استایل کارت محصول (تمیز و بدون کادر) --- */
+.product-card {
+    /* عرض پیش‌فرض دسکتاپ */
+    width: 250px !important; 
+    
+    /* حذف کادر، سایه و رنگ پس‌زمینه مزاحم */
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* فونت را دستکاری نمی‌کنیم */
+}
+
+.product-card h4 {
+    font-size: 1rem;
+    margin: 12px 0 5px;
+    color: #000;
+    font-weight: normal;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- بخش عکس --- */
+.product-image-wrapper {
+    position: relative;
+    width: 100%;
+    /* ارتفاع ثابت برای جلوگیری از کشیدگی */
+    height: 250px; 
+    overflow: hidden;
+    border-radius: 10px; /* کمی گردی فقط برای عکس */
+    background-color: #f0f0f0; /* یک رنگ بسیار ملایم زیر عکس */
+}
+
+.product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* جلوگیری از دفرمه شدن عکس */
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* --- افکت هاور (سیاه شدن) --- */
+.hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.view-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.product-image-wrapper:hover .hover-overlay { opacity: 1; visibility: visible; }
+.product-image-wrapper:hover .view-btn { transform: translateY(0); }
+.product-image-wrapper:hover img { transform: scale(1.05); }
+
+
+/* --- ریسپانسیو موبایل (بسیار مهم) --- */
+@media (max-width: 768px) {
+    
+    /* اجبار به کوچک شدن کارت در موبایل */
+    .product-card {
+        width: 150px !important; /* سایز فیکس برای جا شدن ۲ عدد */
+        margin-left: 10px; /* فاصله مطمئن */
+    
+    }
+
+    /* ارتفاع عکس در موبایل کمتر شود */
+    .product-image-wrapper {
+        height: 150px !important;
+    }
+
+    .product-card h4 {
+        font-size: 0.85rem;
+        margin-top: 8px;
+    }
+    
+    .product-card p {
+        font-size: 0.85rem;
+    }
+}
 
 /* ========================================= */
 /* استایل‌های اختصاصی بخش جدید (طرح Pupa)   */
