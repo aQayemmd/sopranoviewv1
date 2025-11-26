@@ -956,3 +956,52 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--primary-whi
         display: none; 
     }
 }
+
+/* نگهدارنده برای اینکه منو دقیقاً زیر باکس باز شود */
+.pupa-dropdown-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* استایل لیست منو (پیش‌فرض مخفی) */
+.pupa-dropdown-menu {
+    display: none; /* مخفی */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 100; /* برای اینکه روی بقیه عناصر بیفتد */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* کلاسی که با جاوااسکریپت اضافه می‌شود تا منو نمایش داده شود */
+.pupa-dropdown-menu.show {
+    display: block;
+}
+
+/* استایل آیتم‌های لیست */
+.pupa-dropdown-menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 13px;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.pupa-dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.pupa-dropdown-menu li:hover {
+    background-color: #f9f9f9;
+    color: #000;
+}
