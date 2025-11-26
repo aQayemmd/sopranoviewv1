@@ -302,18 +302,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // =========================================
-    // 4. دکمه افزودن به سبد (تست)
-    // =========================================
-    const addToCartBtn = document.querySelector('.pupa-add-btn');
-    if (addToCartBtn) {
-        addToCartBtn.addEventListener('click', function () {
-            const selectedQty = document.querySelector('.pupa-qty-value').innerText;
-            const selectedColorText = document.getElementById('pupaSelectedText') ? document.getElementById('pupaSelectedText').innerText : 'انتخاب نشده';
-            
-            alert(`محصول به سبد اضافه شد:\nتعداد: ${selectedQty}\nرنگ: ${selectedColorText}`);
-        });
-    }
+
 
 });
+
 
