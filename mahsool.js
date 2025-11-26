@@ -113,7 +113,7 @@
     const qtyValueSpan = document.querySelector('.pupa-qty-value');
     const qtyButtons = document.querySelectorAll('.pupa-qty-btn');
     
-    if (qtyValueSpan && qtyButtons.length === 2) {
+    if (qtyValueSpan && qtyButtons.length === 1) {
         const minusBtn = qtyButtons[0]; // اولین دکمه (طبق HTML شما منفی است)
         const plusBtn = qtyButtons[1];  // دومین دکمه (طبق HTML شما مثبت است)
 
@@ -316,3 +316,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
