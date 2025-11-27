@@ -455,17 +455,17 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
 /* --- Testimonials Section --- *//* --- شزوع صدای مشتریان ما --- */
 
     /* --- تنظیمات کلی سکشن (حفظ استایل قبلی شما) --- */
+/* --- تنظیمات کلی سکشن (بک‌گراند و پارالاکس) --- */
 #testimonials {
     position: relative;
-    background-image: url('./slide5.jpg'); /* عکس بک‌گراند شما */
+    background-image: url('./slide5.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* حالت پارالاکس */
-    padding: 100px 0; /* ارتفاع مناسب بالا و پایین */
+    background-attachment: fixed;
+    padding: 100px 0;
     overflow: hidden;
 }
 
-/* لایه تاریک روی عکس */
 #testimonials::before {
     content: '';
     position: absolute;
@@ -473,73 +473,86 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* تاریکی 85 درصد */
+    background-color: rgba(0, 0, 0, 0.85);
     z-index: 1;
 }
 
-/* محتویات باید روی لایه تاریک باشند */
 .container {
     position: relative;
     z-index: 2;
 }
 
-/* عنوان سکشن */
 #testimonials .section-title {
     text-align: center;
-    color: #ffffff; /* رنگ سفید روی زمینه تیره */
+    color: #ffffff;
     font-size: 2rem;
     font-weight: 300;
     margin-bottom: 50px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    font-family: salam;
 }
 
-/* --- تنظیمات اختصاصی Swiper --- */
+/* --- تنظیمات Swiper برای هم‌ارتفاع کردن --- */
 .testimonial-swiper {
-    padding-bottom: 50px !important; /* جا برای نقطه‌های Pagination */
+    padding-bottom: 50px !important;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-/* استایل کارت‌ها (مینیمال سفید) */
+/* 
+   نکته مهم ۱: این ویژگی باعث می‌شود همه اسلایدها ارتفاع یکسان (به اندازه بلندترین متن) بگیرند 
+*/
+.swiper-slide {
+    height: auto; 
+    display: flex; /* برای اینکه فرزندش بتواند 100 درصد ارتفاع را پر کند */
+}
+
+/* استایل کارت */
 .testimonial-card {
-    background-color: #ffffff; /* کارت سفید */
+    background-color: #ffffff;
     padding: 40px 30px;
-    border-radius: 8px; /* گردی ملایم */
+    border-radius: 8px;
     text-align: center;
-    height: 100%; /* هم‌ارتفاع بودن کارت‌ها */
+    width: 100%;
+    /* نکته مهم ۲: کارت تمام ارتفاع اسلاید را پر می‌کند */
+    height: 100%; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* سایه برای عمق */
+    justify-content: space-between; /* فاصله بین متن و نویسنده را مدیریت می‌کند */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
 }
 
 /* متن نظر */
 .testimonial-card p {
     font-size: 1rem;
-    color: #333; /* متن خاکستری تیره برای خوانایی روی سفید */
+    color: #333;
     line-height: 1.8;
     margin-bottom: 20px;
     font-style: normal;
     
+    /* اختیاری: اگر متنی خیلی طولانی بود، بعد از 5 خط سه نقطه (...) بگذارد تا سایز کارت‌ها خیلی بزرگ نشود */
+    display: -webkit-box;
+    -webkit-line-clamp: 5; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* نام نویسنده */
 .testimonial-card h4 {
     font-size: 0.95rem;
-    color: #000; /* نام کاملا مشکی */
+    color: #000;
     font-weight: bold;
-    margin-top: auto;
+    margin-top: auto; /* این دستور نام را همیشه به پایین‌ترین نقطه کارت می‌چسباند */
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: salam;
+    padding-top: 15px;
+    border-top: 1px solid #eee; /* خط جداکننده ظریف بالای نام */
+    width: 100%;
 }
 
-/* تنظیمات نقطه‌های Pagination */
+/* Pagination */
 .swiper-pagination-bullet {
-    background: #fff; /* نقطه‌ها سفید باشند چون زمینه تیره است */
+    background: #fff;
     opacity: 0.4;
     width: 8px;
     height: 8px;
@@ -549,9 +562,10 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
 .swiper-pagination-bullet-active {
     background: #fff;
     opacity: 1;
-    width: 20px; /* نقطه فعال کشیده شود */
+    width: 20px;
     border-radius: 4px;
 }
+
 /* --- پایان بخش صدای مشتریان ما Section --- */
 /* --- Contact Section --- */
 .contact-section { background-color: var(--primary-white); }
