@@ -173,33 +173,74 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProducts(currentPage);
     setupPagination();
     
-    // بخش testimonials (اصلاح شده برای infinite scroll بدون فضای خالی)
-const testimonialsData = [ 
-    { text: "طراحی سایت فوق‌العاده زیبا و آرامش‌بخشه. پیدا کردن محصولات خیلی راحته و از خریدم واقعا راضی هستم.", author: "سارا محمدی" }, 
-    { text: "کیفیت محصولات سوپرانو بی‌نظیره. بسته‌بندی شیک و ارسال سریع، همه چیز عالی بود. ممنونم!", author: "مریم رضایی" }, 
-    { text: "این بهترین تجربه‌ی خرید آنلاین من بود. سایت خیلی روان کار می‌کنه و افکت‌هاش خلاقانه است.", author: "نگار کریمی" }, 
+        const testimonialsData = [ 
+    { text: "طراحی فوق‌العاده زیبا. پیدا کردن محصولات خیلی راحته و از خریدم واقعا راضی هستم.", author: "سارا محمدی" }, 
+    { text: "کیفیت محصولات بی‌نظیره. بسته‌بندی شیک و سریع، همه چیز عالی بود!", author: "مریم رضایی" }, 
+    { text: "این بهترین  خرید آنلاین من بود. سایت خیلی روان کار می‌کنه و افکت‌هاش خلاقانه است.", author: "نگار کریمی" }, 
     { text: "عاشق کالکشن جدیدتون شدم! رنگ‌ها و کیفیت محصولات واقعا در سطح جهانیه.", author: "شیما وحدتی" }, 
     { text: "پشتیبانی مشتریان بسیار حرفه‌ای و پاسخگو بود. حس خیلی خوبی از این خرید داشتم.", author: "آزاده تهرانی" }, 
     { text: "محصولات کاملا گیاهی و بدون تست حیوانی هستند که برای من ارزش بسیار زیادی داره.", author: "پریسا نوری" } 
 ];
 
-const track = document.querySelector('.testimonial-track');
-if (track) {
-    // تکرار ۶ بار برای پر شدن کامل صفحه و infinite scroll روان
-    const allCards = [
-        ...testimonialsData, 
-        ...testimonialsData, 
-        ...testimonialsData, 
-        ...testimonialsData,
-        ...testimonialsData, 
-        ...testimonialsData
-    ]; 
-    
-    allCards.forEach(testimonial => { 
-        const card = document.createElement('div');
-        card.className = 'testimonial-card';
-        card.innerHTML = `<p>"${testimonial.text}"</p><h4>- ${testimonial.author}</h4>`;
-        track.appendChild(card); 
+const wrapper = document.getElementById('testimonial-wrapper');
+
+if (wrapper) {
+    // 1. تولید کارت‌ها در HTML
+    testimonialsData.forEach(item => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide'; // کلاس ضروری swiper
+        slide.innerHTML = `
+            <div class="testimonial-card">
+                <p>"${item.text}"</p>
+                <h4>- ${item.author}</h4>
+            </div>
+        `;
+        wrapper.appendChild(slide);
+    });
+
+    // 2. راه‌اندازی اسلایدر با تنظیمات بهینه
+    const swiper = new Swiper('.testimonial-swiper', {
+        loop: true, // چرخش بی‌نهایت
+        speed: 800, // سرعت نرم حرکت
+        spaceBetween: 20, // فاصله بین کارت‌ها
+        grabCursor: true, // نشانگر موس به صورت دست
+        
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false, // بعد از تاچ متوقف نشود
+            pauseOnMouseEnter: true, // وقتی موس روی آن است بایستد
+        },
+
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // --- ریسپانسیو حرفه‌ای ---
+        breakpoints: {
+            // موبایل (زیر 576px)
+            0: {
+                slidesPerView: 1.2, // یک کارت کامل + 20 درصد کارت بعدی (برای ترغیب به اسکرول)
+                centeredSlides: true, // کارت اصلی وسط باشد
+                spaceBetween: 15,
+            },
+            // تبلت کوچک (576px تا 768px)
+            576: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+                centeredSlides: false,
+            },
+            // تبلت و لپ‌تاپ (768px تا 1024px)
+            768: {
+                slidesPerView: 2.5, // دو و نیم کارت
+                spaceBetween: 25,
+            },
+            // دسکتاپ (بالای 1024px)
+            1024: {
+                slidesPerView: 3, // سه کارت کامل
+                spaceBetween: 30,
+            }
+        }
     });
 }
 
