@@ -452,34 +452,107 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
 .promo-banner { padding: 100px 0; position: relative; background-image: url('https://images.unsplash.com/photo-1557822496-e72785f0426b?auto=format&fit=crop&w=1740&q=80'); background-size: cover; background-position: center center; background-attachment: fixed; color: var(--primary-white); text-align: center; }
 .promo-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); }
 
-/* --- Testimonials Section --- */
+/* --- Testimonials Section --- *//* --- شزوع صدای مشتریان ما --- */
 
-#testimonials { position: relative; background-image: url('./slide5.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
-#testimonials::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); }
-#testimonials .section-title { color: var(--primary-white); text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-.testimonial-carousel-container { width: 100%; overflow: hidden; padding: 20px 0; }
-.testimonial-carousel-container:hover .testimonial-track { animation-play-state: paused; }
-.testimonial-track { 
-    display: flex; 
-    animation: marquee 120s linear infinite; 
-    will-change: transform;
-}
-.testimonial-card { 
-    flex-shrink: 0; 
-    width: 320px; 
-    margin: 0 15px; 
-    background-color: var(--primary-white); 
-    padding: 30px; 
-    border-radius: 12px; 
-}
-.testimonial-card p { font-size: 1rem; color: var(--light-text); line-height: 1.8; margin-bottom: 20px; }
-.testimonial-card h4 { font-size: 1.1rem; color: var(--primary-blue); }
-@keyframes marquee { 
-    0% { transform: translateX(0); } 
-    100% { transform: translateX(-50%); } 
+    /* --- تنظیمات کلی سکشن (حفظ استایل قبلی شما) --- */
+#testimonials {
+    position: relative;
+    background-image: url('./slide5.jpg'); /* عکس بک‌گراند شما */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* حالت پارالاکس */
+    padding: 100px 0; /* ارتفاع مناسب بالا و پایین */
+    overflow: hidden;
 }
 
+/* لایه تاریک روی عکس */
+#testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* تاریکی 85 درصد */
+    z-index: 1;
+}
 
+/* محتویات باید روی لایه تاریک باشند */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* عنوان سکشن */
+#testimonials .section-title {
+    text-align: center;
+    color: #ffffff; /* رنگ سفید روی زمینه تیره */
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 50px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: salam;
+}
+
+/* --- تنظیمات اختصاصی Swiper --- */
+.testimonial-swiper {
+    padding-bottom: 50px !important; /* جا برای نقطه‌های Pagination */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* استایل کارت‌ها (مینیمال سفید) */
+.testimonial-card {
+    background-color: #ffffff; /* کارت سفید */
+    padding: 40px 30px;
+    border-radius: 8px; /* گردی ملایم */
+    text-align: center;
+    height: 100%; /* هم‌ارتفاع بودن کارت‌ها */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* سایه برای عمق */
+    transition: transform 0.3s ease;
+}
+
+/* متن نظر */
+.testimonial-card p {
+    font-size: 1rem;
+    color: #333; /* متن خاکستری تیره برای خوانایی روی سفید */
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-style: normal;
+    
+}
+
+/* نام نویسنده */
+.testimonial-card h4 {
+    font-size: 0.95rem;
+    color: #000; /* نام کاملا مشکی */
+    font-weight: bold;
+    margin-top: auto;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: salam;
+}
+
+/* تنظیمات نقطه‌های Pagination */
+.swiper-pagination-bullet {
+    background: #fff; /* نقطه‌ها سفید باشند چون زمینه تیره است */
+    opacity: 0.4;
+    width: 8px;
+    height: 8px;
+    transition: all 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+    width: 20px; /* نقطه فعال کشیده شود */
+    border-radius: 4px;
+}
+/* --- پایان بخش صدای مشتریان ما Section --- */
 /* --- Contact Section --- */
 .contact-section { background-color: var(--primary-white); }
 .contact-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: center; }
@@ -546,9 +619,7 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
         gap: 50px;
     }
 }
-
-.mobile-sort{display:none;}
-
+.mobile-sort{display: none;}
 @media (max-width: 768px) {
     .section-padding {
         padding: 60px 0;
@@ -556,6 +627,7 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
     .section-title {
         font-size: 2rem;
         margin-bottom: 40px;
+        
     }
     .btn {
         padding: 12px 28px;
