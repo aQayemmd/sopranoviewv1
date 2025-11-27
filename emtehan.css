@@ -548,6 +548,7 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
     padding-top: 15px;
     border-top: 1px solid #eee; /* خط جداکننده ظریف بالای نام */
     width: 100%;
+    font-family : salam;
 }
 
 /* Pagination */
@@ -641,6 +642,7 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
     .section-title {
         font-size: 2rem;
         margin-bottom: 40px;
+        font-family:salam;
         
     }
     .btn {
@@ -891,4 +893,5 @@ body { font-family: 'Vazirmatn', sans-serif; background-color: var(--soft-backgr
 #sort-toggle{font-family: salam;}
 
 }
+
 
