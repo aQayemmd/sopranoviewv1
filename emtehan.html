@@ -7,6 +7,11 @@
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- اضافه کردن فایل‌های CSS و JS کتابخانه Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- اسکریپت کتابخانه Swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <link rel="stylesheet" href="./emtehan.css">
 </head>
 <body>
@@ -19,7 +24,7 @@
                     <ul class="nav-menu">
                         <li><a href="emtehan.html">خانه</a></li>
                         <li><a href="#">ویژه‌ها</a></li>
-                        <li><a href="emtehan.html#products">محصولات</a></li>
+                        <li><a href="emtehan.html">محصولات</a></li>
                         <li><a href="#">پرطرفدارها</a></li>
                         <li><a href="#contact">تماس با ما</a></li>
                     </ul>
@@ -176,7 +181,7 @@
 <span class="acc-icon" aria-hidden="true">+</span>
 </button>
 <div class="acc-panel">
-لورم ایپسوم متن ساختگی برای معرفی برند لوازم آرایشی با کیفیت بالا.
+یک تیم دو نفره 
 </div>
 </div>
 
@@ -230,14 +235,21 @@
 <br>
 
 
-    <section id="testimonials" class="testimonials-section section-padding">
-        <div class="container">
-            <h2 class="section-title">صدای مشتریان ما</h2>
+ <section id="testimonials" class="section-padding">
+    <div class="container">
+        <h2 class="section-title">صدای مشتریان ما</h2>
+        
+        <!-- کانتینر اصلی اسلایدر -->
+        <div class="swiper testimonial-swiper">
+            <div class="swiper-wrapper" id="testimonial-wrapper">
+                <!-- کارت‌ها توسط جاوااسکریپت اینجا ساخته می‌شوند -->
+            </div>
+            
+            <!-- صفحه‌بندی (نقطه‌های زیر اسلایدر) -->
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="testimonial-carousel-container">
-            <div class="testimonial-track"></div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <section id="contact" class="contact-section section-padding">
         <div class="container">
@@ -275,7 +287,7 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4><i class="far fa-gem"></i> درباره والرون</h4>
+                    <h4><i class="far fa-gem"></i> درباره سوپرانو</h4>
                     <p>مرجع تخصصی جدیدترین محصولات آرایشی.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
