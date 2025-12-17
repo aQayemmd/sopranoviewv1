@@ -1,0 +1,1010 @@
+/* =========================================
+   1. تنظیمات پایه و ریست (Base & Reset)
+   ========================================= */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+:root {
+    --bg-color: #ffffff;
+    --text-main: #1a1a1a;
+    --text-secondary: #757575;
+    --border-color: #e5e5e5;
+    --primary-color: #000000;
+    --hover-color: #333333;
+    --light-bg: #f9f9f9;
+    --radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    direction: rtl;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   2. کانتینر اصلی و هدر (Layout & Header)
+   ========================================= */
+.profile-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logout-btn {
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logout-btn:hover {
+    color: var(--primary-color);
+}
+
+.profile-body {
+    display: flex;
+    gap: 40px;
+    min-height: 600px;
+}
+
+/* =========================================
+   3. سایدبار (Sidebar)
+   ========================================= */
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.sidebar-nav li {
+    padding: 15px 0;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-right: 3px solid transparent; /* نشانگر تب فعال */
+    transition: var(--transition);
+}
+
+.sidebar-nav li i {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-nav li:hover {
+    color: var(--primary-color);
+}
+
+.sidebar-nav li.active {
+    color: var(--primary-color);
+    border-right-color: var(--primary-color);
+    padding-right: 15px; /* حرکت جزئی به چپ */
+}
+
+/* باکس اطلاعات اضافی سایدبار (جزئیات سفارش) */
+#sidebar-order-info {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    animation: fadeIn 0.4s ease;
+}
+
+.sidebar-address-box {
+    margin-bottom: 25px;
+}
+
+.sidebar-address-box h4 {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-address-box p {
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.8;
+}
+
+/* =========================================
+   4. پنل‌های محتوا (Content Panels)
+   ========================================= */
+.content-panels {
+    flex: 1;
+}
+
+.content-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.content-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2, h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+/* =========================================
+   5. فرم‌ها (Forms)
+   ========================================= */
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.form-group input {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-color);
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.form-group input:disabled {
+    background-color: var(--light-bg);
+    color: var(--text-secondary);
+}
+
+/* دکمه‌های اصلی */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-color);
+}
+
+/* دکمه ذخیره در فرم */
+.form-container .btn-primary {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 10px;
+}
+
+/* =========================================
+   6. جدول سفارشات (Orders Table)
+   ========================================= */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.orders-table th {
+    text-align: right;
+    padding: 15px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 12px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.orders-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.orders-table .view-details-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+/* =========================================
+   7. جزئیات سفارش (Order Details View)
+   ========================================= */
+/* =========================================
+   11. جزئیات سفارش (طراحی شیک + سبز + ریسپانسیو)
+   ========================================= */
+
+/* --- هدر استایلیش --- */
+.details-header-stylish {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.dh-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dh-icon-box {
+    width: 45px;
+    height: 45px;
+    background: #e8f5e9; /* پس زمینه سبز خیلی کمرنگ */
+    color: #2e7d32;      /* آیکون سبز */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.dh-title h3 {
+    font-size: 16px;
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+}
+
+.order-id-highlight {
+    font-weight: 800;
+    color: #333;
+}
+
+/* بج سبز برای وضعیت */
+.status-badge.success {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #e8f5e9;
+    color: #2e7d32; /* سبز پررنگ */
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* دکمه بازگشت */
+.btn-back-stylish {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-back-stylish:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* --- باکس‌های اطلاعات (تاریخ و ...) --- */
+.order-info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-card i {
+    font-size: 18px;
+    color: #aaa;
+}
+
+.info-card .label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.info-card .val {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* --- بخش آدرس‌ها --- */
+.order-address-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.addr-box {
+    background: #f9f9f9;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.addr-icon {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+}
+
+.addr-title {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.addr-text {
+    margin: 0;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* --- جدول محصولات --- */
+.section-title {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.styled-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.styled-order-table th {
+    background: #f4f4f4;
+    padding: 12px 15px;
+    font-size: 13px;
+    text-align: right;
+    color: #666;
+}
+
+.styled-order-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #333;
+}
+
+.text-center { text-align: center; }
+.text-end { text-align: left; } /* در فارسی چپ می‌شود پایان */
+.price-bold { font-weight: 700; }
+
+.product-item-flex {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.p-img-placeholder {
+    width: 45px;
+    height: 45px;
+    background: #eee;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+/* استایل جدید عکس محصول در جدول سفارش */
+.product-img-thumb {
+    width: 50px;       /* عرض ثابت */
+    height: 50px;      /* ارتفاع ثابت */
+    object-fit: cover; /* عکس دفرمه نشه، کراپ بشه */
+    border-radius: 8px;
+    border: 1px solid #eee; /* یک کادر نازک دور عکس */
+    background-color: #f9f9f9; /* رنگ زمینه تا وقتی عکس لود شه */
+}
+
+/* اصلاح فاصله متن کنار عکس */
+.product-item-flex {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* فاصله کمی بیشتر شد */
+}
+
+/* --- فوتر قیمت --- */
+.order-total-bar {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.total-row.final {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.final-price {
+    color: #2e7d32; /* سبز برای قیمت نهایی */
+    font-size: 18px;
+}
+
+.text-danger { color: #d32f2f; }
+
+/* =========================================
+   موبایل و ریسپانسیو (جادوی اصلی)
+   ========================================= */
+@media (max-width: 600px) {
+    /* هدر: جمع و جورتر */
+    .details-header-stylish {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .btn-back-stylish {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* کارت‌های اطلاعات: زیر هم */
+    .order-info-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* آدرس‌ها: زیر هم */
+    .order-address-section {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- تبدیل جدول به کارت (حذف اسکرول) --- */
+    .styled-order-table thead {
+        display: none; /* مخفی کردن هدر جدول */
+    }
+
+    .styled-order-table, 
+    .styled-order-table tbody, 
+    .styled-order-table tr, 
+    .styled-order-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .styled-order-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 10px;
+        background: #fff;
+    }
+
+    .styled-order-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px dashed #f0f0f0;
+        text-align: left;
+    }
+
+    .styled-order-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* اضافه کردن برچسب (تعداد، قیمت) قبل از مقدار در موبایل */
+    .styled-order-table td::before {
+        content: attr(data-label);
+        font-size: 12px;
+        color: #888;
+        font-weight: bold;
+    }
+
+    /* اصلاح نمایش محصول در حالت کارتی */
+    .product-item-flex {
+        width: 100%;
+    }
+    
+    /* قیمت‌ها در موبایل */
+    .price-bold {
+        color: #333;
+        font-size: 15px;
+    }
+}
+
+/* =========================================
+   9. واکنش‌گرایی (Responsive)
+   ========================================= */
+@media (max-width: 900px) {
+    .profile-body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+    }
+
+    .sidebar-nav li {
+        border-right: none;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        padding: 10px 0;
+    }
+
+    .sidebar-nav li.active {
+        padding-right: 0;
+        border-bottom-color: var(--primary-color);
+    }
+    
+    #sidebar-order-info {
+        display: none !important; /* در موبایل جزئیات سایدبار مخفی شود */
+    }
+
+    .form-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-list-header {
+        display: none; /* هدر جدول محصولات در موبایل مخفی */
+    }
+
+    .product-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: right;
+    }
+    
+    .col-product {
+        margin-bottom: 10px;
+    }
+    
+    .order-status-wide {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .status-divider {
+        display: none;
+    }
+
+    .orders-table th:nth-child(4), 
+    .orders-table td:nth-child(4) {
+        display: none; /* مخفی کردن ستون مجموع در موبایل */
+    }
+}
+
+/* =========================================
+   8. پنل آدرس‌ها (Addresses Panel)
+   ========================================= */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.panel-header h2,
+.panel-header h3 {
+    margin-bottom: 0; /* حذف فاصله پایین عنوان در هدر پنل */
+}
+
+.panel-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.address-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.address-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.address-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.address-card-header h4 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.address-card-header span {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background-color: var(--light-bg);
+    color: var(--text-secondary);
+}
+
+.address-card.default .address-card-header span {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.address-card p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.address-card-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.address-card-actions a {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.address-card-actions a:hover {
+    text-decoration: underline;
+}
+/* =========================================
+   9. پنل لیست آرزوها (Wishlist Grid)
+   ========================================= */
+/* =========================================
+   9. پنل لیست آرزوها (Wishlist Grid) - اصلاح شده
+   ========================================= */
+
+.wishlist-grid {
+    display: grid;
+    /* در دسکتاپ: حداقل ۲۲۰ پیکسل (معمولا ۳ یا ۴ تا جا میشه) */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 10px;
+}
+
+/* کارت محصول */
+.wishlist-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 15px;
+    position: relative;
+    text-align: center;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* =========================================
+   فیکس سایز عکس‌ها (Image Fix)
+   ========================================= */
+.wishlist-img-box {
+    width: 100%;
+    /* ارتفاع ثابت در دسکتاپ تا همه کارت‌ها هم‌قد باشن */
+    height: 200px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background-color: #fff; /* پس زمینه سفید */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* دستور مستقیم به عکس داخل کارت مورد علاقه */
+.wishlist-card .wishlist-img-box img {
+    width: 100% !important;   /* اجبار به پر کردن عرض */
+    height: 100% !important;  /* اجبار به پر کردن ارتفاع */
+    /* 
+       object-fit: contain; -> کل عکس دیده بشه (ممکنه سفید دورش بیفته)
+       object-fit: cover;   -> کل کادر پر بشه (ممکنه لبه‌های عکس زده بشه)
+       پیشنهاد من برای محصولات: contain
+    */
+    object-fit: contain; 
+}
+
+/* دکمه حذف */
+.remove-wish-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.9); /* کمی پس زمینه سفید برای دیده شدن روی عکس */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.remove-wish-btn:hover {
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+/* جزئیات متنی */
+.product-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    /* اگر اسم طولانی بود، سه نقطه بذاره */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-category {
+    font-size: 13px;
+    color: #888;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.btn-dark-full {
+    display: block;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-dark-full:hover {
+    background-color: #000;
+}
+
+/* =========================================
+   ریسپانسیو موبایل (Mobile 2 Columns)
+   ========================================= */
+@media (max-width: 600px) {
+    .wishlist-grid {
+        /* اجبار به دو ستون مساوی */
+        grid-template-columns: 1fr 1fr;
+        gap: 10px; /* فاصله کمتر برای جا شدن */
+    }
+
+    .wishlist-card {
+        padding: 10px; /* پدینگ کمتر */
+    }
+
+    /* کاهش ارتفاع عکس در موبایل تا کارت خیلی دراز نشه */
+    .wishlist-img-box {
+        height: 140px; 
+    }
+
+    .product-title {
+        font-size: 13px;
+    }
+    
+    .product-price {
+        font-size: 14px;
+    }
+
+    .btn-dark-full {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+}
+
+/* =========================================
+   10. فرم افزودن/ویرایش آدرس
+   ========================================= */
+.address-form-box {
+    background-color: #f8f8f8;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 25px;
+    margin-bottom: 30px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.address-form-box h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+/* چیدمان دو ستونه برای فیلدهای کوچک */
+.form-row-2 {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row-2 .form-group {
+    flex: 1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* دکمه‌ها سمت چپ (در راست‌چین سمت چپ می‌شود) یا پایان */
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* استایل‌های ریز برای کارت آدرس */
+.address-card small {
+    display: block;
+    color: #666;
+    margin-bottom: 15px;
+    font-family: monospace; /* فونت مناسب عدد */
+    font-size: 14px;
+}
+
+.badge-default {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+/* در موبایل فیلدها زیر هم باشند */
+@media (max-width: 768px) {
+    .form-row-2 {
+        flex-direction: column;
+        gap: 0;
+    }
+}

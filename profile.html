@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروفایل کاربری</title>
+    <!-- اتصال فونت وزیرمتن از گوگل فونت -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- اتصال کتابخانه آیکون Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- اتصال فایل استایل CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!--برای رنگ نوار مرورگر-->
+    <meta name="theme-color" content="#fff">
+    <!--برای لینک شدن به js-->
+    <script src="./profile.js"></script>
+    <!--برای لینک شدن به CSS-->
+    <link rel="stylesheet" href="./profile.css">
+
+</head>
+<body>
+
+  <div class="profile-container">
+        <header class="profile-header">
+            <h1>سلام، مصطفی</h1>
+       
+            <a href="#" class="logout-btn">
+                <i class="fa fa-sign-out-alt"></i>
+                خروج
+            </a>
+        </header>
+
+        <main class="profile-body">
+            <!-- سایدبار ناوبری (سمت راست) -->
+            <aside class="sidebar">
+                <ul class="sidebar-nav">
+                    <!-- آیتم پروفایل من (فعال به صورت پیش‌فرض) -->
+                    <li class="active" data-target="#profile">
+                        <i class="fa fa-user-circle"></i>
+                        <span>پروفایل من</span>
+                    </li>
+                    <!-- آیتم سفارشات من -->
+                    <li data-target="#orders">
+                        <i class="fa fa-shopping-bag"></i>
+                        <span>خرید های من</span>
+                    </li>
+                    <!-- ======================= آیتم جدید: آدرس‌های من ======================= -->
+                    <li data-target="#addresses">
+                        <i class="fa fa-map-marker-alt"></i>
+                        <span>آدرس های من</span>
+                    </li>
+                    <!-- =================================================================== -->
+                    <!-- آیتم لیست آرزوها -->
+                    <li data-target="#wishlist">
+                        <i class="fa fa-heart"></i>
+                        <span>لیست مورد علاقه ها</span>
+                    </li>
+                </ul>
+                <!-- این بخش در سایدبار اصلی، زیر منوی تب‌ها قرار می‌گیرد -->
+<!-- در حالت عادی مخفی است (display: none) و با JS فعال می‌شود -->
+<div id="sidebar-order-info" style="display: none;">
+    
+    <div class="sidebar-address-box">
+        <h4><i class="fa fa-file-invoice"></i> آدرس صورتحساب</h4>
+        <p>مصطفی میرزاخانی<br>از طریق رامونتو براندیری ۹<br>۲۰۱۴۴ میلان</p>
+    </div>
+
+    <div class="sidebar-address-box">
+        <h4><i class="fa fa-truck"></i> آدرس ارسال</h4>
+        <p>مصطفی میرزاخانی<br>از طریق رامونتو براندیری ۹<br>۲۰۱۴۴ میلان</p>
+    </div>
+
+</div>
+
+            </aside>
+
+            <!-- بخش محتوا (سمت چپ) -->
+            <div class="content-panels">
+                <!-- پنل پروفایل من (فعال به صورت پیش‌فرض) -->
+                <div id="profile" class="content-panel active">
+                    <h2>پروفایل من</h2>
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="name">مصطفی میرزاابولقاسمی</label>
+                            <input type="text" id="name" value="مصطفی میرزاابولقاسمی" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">ایمیل</label>
+                            <input type="email" id="email" value="saaromaan@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">تلفن</label>
+                            <input type="tel" id="phone" value="+393792438280">
+                        </div>
+                        <div class="form-group">
+                            <label for="card">شماره کارت</label>
+                            <input type="text" id="card" value="0055084136">
+                        </div>
+                        <div class="form-group">
+                            <label for="points">تعداد امتیازات</label>
+                            <input type="text" id="points" value="0" disabled>
+                        </div>
+                        <button class="btn-primary">ذخیره تغییرات</button>
+                    </div>
+                </div>
+
+                   <!-- پنل سفارشات من (شامل هر دو نما) -->
+<div id="orders" class="content-panel">
+    
+    <!-- نمای لیست سفارش‌ها (پیش‌فرض) -->
+    <div id="orders-list-view">
+        <h2>سفارشات من</h2>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>سفارش</th>
+                    <th>تاریخ</th>
+                    <th>وضعیت</th>
+                    <th>مجموع</th>
+                    <th>مشاهده </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#21620</td>
+                    <td>۲ دسامبر ۲۰۲۵</td>
+                    <td>تکمیل شده</td>
+                    <td>۲۲,۳۰ یورو برای ۲ مورد</td>
+                    <!-- مهم: کلاس view-details-btn را به دکمه اضافه کردیم -->
+                    <td><a href="#" class="btn-primary view-details-btn">جزئیات سفارش</a></td>
+                </tr>
+                <tr>
+                    <td>#21619</td>
+                    <td>۱ دسامبر ۲۰۲۵</td>
+                    <td>در حال پردازش</td>
+                    <td>۱۵,۰۰ یورو برای ۱ مورد</td>
+                    <td><a href="#" class="btn-primary view-details-btn">جزئیات سفارش</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- نمای جزئیات سفارش (در ابتدا مخفی است) -->
+   <!-- نمای جزئیات سفارش (اصلاح شده) -->
+<div id="order-details-view" style="display: none;">
+    <!-- هدر: عنوان و دکمه بازگشت -->
+    <div class="details-header-stylish">
+        <div class="dh-title">
+            <div class="dh-icon-box">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div>
+                <h3>جزئیات سفارش <span class="order-id-highlight">#12345</span></h3>
+                <span class="status-badge success"><i class="fas fa-check-circle"></i> تحویل شده</span>
+            </div>
+        </div>
+        <button class="btn-back-stylish" id="back-to-orders-btn">
+            بازگشت <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <!-- باکس اطلاعات کلی (تاریخ و زمان) -->
+    <div class="order-info-cards">
+        <div class="info-card">
+            <i class="fas fa-calendar-alt icon-muted"></i>
+            <div>
+                <span class="label">تاریخ ثبت</span>
+                <span class="val" id="detail-order-date">۲۶ آذر ۱۴۰۲</span>
+            </div>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-truck icon-muted"></i>
+            <div>
+                <span class="label">زمان ارسال</span>
+                <span class="val">سه‌شنبه، ۲۸ آذر - ۱۸ تا ۲۱</span>
+            </div>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-user icon-muted"></i>
+            <div>
+                <span class="label">تحویل گیرنده</span>
+                <span class="val">مصطفی میرزاخانی</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- باکس آدرس‌ها (طراحی مینیمال و آیکون دار) -->
+    <div class="order-address-section">
+        <div class="addr-box">
+            <div class="addr-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="addr-content">
+                <span class="addr-title">آدرس تحویل سفارش</span>
+                <p class="addr-text">تهران، خیابان آزادی، پلاک ۱۰۱، واحد ۵</p>
+            </div>
+        </div>
+        <div class="addr-box">
+            <div class="addr-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="addr-content">
+                <span class="addr-title">شماره تماس</span>
+                <p class="addr-text">۰۹۱۲۳۴۵۶۷۸۹</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- جدول محصولات (در موبایل کارتی می‌شود) -->
+    <div class="order-products-wrapper">
+        <h4 class="section-title"><i class="fas fa-box-open"></i> اقلام سفارش</h4>
+        <div class="responsive-table-container">
+            <!-- داخل div.responsive-table-container -->
+<table class="styled-order-table">
+    <thead>
+        <tr>
+            <th>محصول</th>
+            <th class="text-center">تعداد</th>
+            <th class="text-center">قیمت واحد</th>
+            <th class="text-end">قیمت کل</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="product-item-flex">
+                    <!-- اینجا تگ IMG گذاشتم -->
+                    <img src="./lak.png" alt="کفش ورزشی" class="product-img-thumb">
+                    <span class="p-name">کفش ورزشی نایک مدل Air</span>
+                </div>
+            </td>
+            <td class="text-center" data-label="تعداد">۱</td>
+            <td class="text-center" data-label="قیمت واحد">۲,۵۰۰,۰۰۰</td>
+            <td class="text-end price-bold" data-label="قیمت کل">۲,۵۰۰,۰۰۰</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="product-item-flex">
+                    <!-- اینجا تگ IMG گذاشتم -->
+                    <img src="./5d4a0128-e3d9-8352-1a8f-9a1a9d0ac195.jpg" alt="تی‌شرت" class="product-img-thumb">
+                    <span class="p-name">تی‌شرت نخی سایز L</span>
+                </div>
+            </td>
+            <td class="text-center" data-label="تعداد">۲</td>
+            <td class="text-center" data-label="قیمت واحد">۴۵۰,۰۰۰</td>
+            <td class="text-end price-bold" data-label="قیمت کل">۹۰۰,۰۰۰</td>
+        </tr>
+    </tbody>
+</table>
+
+        </div>
+    </div>
+
+    <!-- فوتر قیمت نهایی -->
+    <div class="order-total-bar">
+        <div class="total-row">
+            <span>مبلغ کل کالاها:</span>
+            <span>۳,۴۰۰,۰۰۰ تومان</span>
+        </div>
+        <div class="total-row">
+            <span>هزینه ارسال:</span>
+            <span class="text-danger">۵۰,۰۰۰ تومان</span>
+        </div>
+        <div class="total-row final">
+            <span>مبلغ قابل پرداخت:</span>
+            <span class="final-price">۳,۴۵۰,۰۰۰ تومان</span>
+        </div>
+    </div>
+</div>
+
+</div>
+                <!-- ======================= پنل آدرس های من (اصلاح شده) ======================= -->
+              <div id="addresses" class="content-panel">
+    <div class="panel-header">
+        <h2>آدرس های من</h2>
+        <!-- دکمه‌ای که فرم را باز می‌کند -->
+        <button class="btn-primary" id="btn-add-new-address">افزودن آدرس جدید</button>
+    </div>
+
+    <!-- فرم افزودن/ویرایش آدرس (به صورت پیش‌فرض مخفی است) -->
+    <div id="address-form-container" class="address-form-box" style="display: none;">
+        <h3 id="form-title">افزودن آدرس جدید</h3>
+        <form id="address-form">
+            <div class="form-group">
+                <label>نام گیرنده</label>
+                <input type="text" id="addr-name" placeholder="مثال: مصطفی میرزاخانی">
+            </div>
+            
+            <div class="form-group">
+                <label>آدرس کامل پستی</label>
+                <textarea id="addr-text" rows="3" placeholder="استان، شهر، خیابان، کوچه، پلاک، واحد"></textarea>
+            </div>
+
+            <div class="form-row-2">
+                <div class="form-group">
+                    <label>کد پستی</label>
+                    <input type="text" id="addr-zip" placeholder="۱۰ رقم بدون خط تیره">
+                </div>
+                <div class="form-group">
+                    <label>عنوان آدرس</label>
+                    <input type="text" id="addr-title" placeholder="مثال: خانه، شرکت">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" id="btn-cancel-address">انصراف</button>
+                <button type="submit" class="btn-primary" id="btn-save-address">ثبت آدرس</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- لیست کارت‌های آدرس -->
+    <div class="panel-content" id="address-list">
+        
+        <!-- کارت پیش‌فرض (نمونه) -->
+        <div class="address-card default">
+            <div class="address-card-header">
+                <h4 class="addr-title-display">خانه</h4>
+                <span class="badge-default">پیش فرض</span>
+            </div>
+            <p class="addr-text-display">مصطفی میرزاخانی، ایران، استان تهران، تهران، خیابان آزادی، پلاک ۱۰۱، واحد ۵</p>
+            <small class="addr-zip-display">کدپستی: ۱۴۱۹۹۱۲۳۴۵</small>
+            
+            <div class="address-card-actions">
+                <a href="#" class="action-edit">ویرایش</a>
+                <a href="#" class="action-delete">حذف</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+ <!-- ========================================================================= -->
+                
+                <!-- پنل لیست آرزوها (محتوای نمونه) -->
+                <!-- محتوای تب لیست آرزوها -->
+<!-- پنل لیست آرزوها -->
+<div id="wishlist" class="content-panel">
+    <div class="panel-header">
+        <h2>لیست مورد علاقه ها</h2>
+    </div>
+    
+    <!-- شبکه نمایش محصولات -->
+    <div class="wishlist-grid">
+        
+        <!-- کارت محصول ۱ (بر اساس تصویر شما) -->
+        <div class="wishlist-card">
+            <!-- دکمه حذف از لیست -->
+            <button class="remove-wish-btn" title="حذف از لیست">
+                <i class="fa fa-times"></i>
+            </button>
+            
+            <div class="wishlist-img-box">
+                <!-- جای عکس خالی -->
+                <img src="./bee66b73-4581-473a-8a0c-146ee3e7a693.jpg" alt="پالت سایه چشم" class="product-img" >
+            </div>
+            
+            <div class="wishlist-details">
+                <h3 class="product-title">پالت سایه چشم</h3>
+                <span class="product-category">سایه</span>
+                
+                <!-- رنگ‌بندی (دکوری) -->
+                <div class="color-swatches">
+                    <span style="background-color: #A0522D;"></span>
+                    <span style="background-color: #8B4513;"></span>
+                    <span style="background-color: #D2691E;"></span>
+                </div>
+
+                <div class="product-price">۷۲۰,۰۰۰ تومان</div>
+                
+                <a href="#" class="btn-dark-full">مشاهده جزئیات</a>
+            </div>
+        </div>
+
+        <!-- کارت محصول ۲ (نمونه دوم) -->
+        <div class="wishlist-card">
+            <button class="remove-wish-btn" title="حذف از لیست">
+                <i class="fa fa-times"></i>
+            </button>
+            
+            <div class="wishlist-img-box">
+                <!-- جای عکس خالی -->
+                <img src="./5d4a0128-e3d9-8352-1a8f-9a1a9d0ac195.jpg" alt="رژ لب مایع" class="product-img">
+            </div>
+            
+            <div class="wishlist-details">
+                <h3 class="product-title">رژ لب مایع مات</h3>
+                <span class="product-category">رژ لب</span>
+                
+                <div class="color-swatches">
+                    <span style="background-color: #DC143C;"></span>
+                    <span style="background-color: #C71585;"></span>
+                </div>
+
+                <div class="product-price">۴۵۰,۰۰۰ تومان</div>
+                
+                <a href="#" class="btn-dark-full">مشاهده جزئیات</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+            </div>
+        </main>
+    </div>
+
+
+</body>
+</html>
